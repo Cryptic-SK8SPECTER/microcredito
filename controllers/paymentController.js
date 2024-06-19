@@ -4,6 +4,7 @@ const AppError = require('./../utils/appError');
 const Loan = require('./../models/loanModel');
 const APIFeatures = require('./../utils/apiFeatures');
 const factory = require('./handlerFactory');
+const Email = require('./../utils/paymentEmail');
 
 exports.getAllPayments = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Payment.find().populate(), req.query)
@@ -26,7 +27,7 @@ exports.getAllPayments = catchAsync(async (req, res, next) => {
 exports.makePayment = catchAsync(async (req, res, next) => {
   const loanId = req.params.id;
   const { price, paymentMethod } = req.body;
-  const loan = await Loan.findById(loanId);
+  const loan = await Loan.findById(loanId).populate('user');
 
   if (!loanId || !price) {
     return next(new AppError('Please provide a loan ID and price', 400));
@@ -54,7 +55,6 @@ exports.makePayment = catchAsync(async (req, res, next) => {
     );
   }
 
-  // Check if a payment for this loan already exists
   const existingPayment = await Payment.findOne({ loan: loanId });
   if (existingPayment) {
     return next(
@@ -70,6 +70,20 @@ exports.makePayment = catchAsync(async (req, res, next) => {
   };
 
   const payment = await Payment.create(paymentData);
+
+  // Enviar e-mail de confirmação de pagamento
+  const { email, name } = loan.user;
+  const firstName = name.split(' ')[0];
+  const url = `${req.protocol}://${req.get('host')}/loans/${loanId}`; // URL de exemplo para detalhes do empréstimo
+
+  await new Email(
+    { email, name: firstName },
+    url,
+    payment.transactionNumber, // Passando transactionNumber para o email
+    price,
+    new Date().toLocaleDateString() // Passando a data do pagamento
+  ).makePayment();
+
   res.status(200).json({
     status: 'success',
     data: {

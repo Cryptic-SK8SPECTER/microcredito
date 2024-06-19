@@ -17,6 +17,11 @@ const paymentSchema = new mongoose.Schema(
       required: [true, 'Payment method is mandatory'],
       enum: ['Cash', 'Bank Transfer', 'Credit Card', 'Debit Card', 'Other']
     },
+    transactionNumber: {
+      type: String,
+      unique: true,
+      default: () => `TXN${Date.now()}` // Gerar um número de transação único
+    },
     status: {
       type: String,
       default: 'Approved',

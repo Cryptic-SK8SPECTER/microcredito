@@ -1,18 +1,21 @@
 const nodemailer = require('nodemailer');
 const mgTransport = require('nodemailer-mailgun-transport');
 const pug = require('pug');
-const { convert } = require('html-to-text'); // Atualize a importação conforme a versão atual
+const { convert } = require('html-to-text');
 const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config({
   path: path.resolve(__dirname, './../config.env')
 });
 
-module.exports = class Email {
-  constructor(user, url) {
+module.exports = class paymentEmail {
+  constructor(user, url, transactionNumber, amountPaid, transactionDate) {
     this.to = user.email;
-    this.firstName = user.name.split(' ')[0];
+    this.firstName = user.name;
     this.url = url;
+    this.transactionNumber = transactionNumber;
+    this.amountPaid = amountPaid;
+    this.transactionDate = transactionDate;
     this.from = `Alberto Dgedge <${process.env.EMAIL_FROM}>`;
   }
 
@@ -40,37 +43,25 @@ module.exports = class Email {
     });
   }
 
-  // Enviar o e-mail
   async send(template, subject) {
-    // 1) Renderizar HTML com base no template Pug
     const html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`, {
       firstName: this.firstName,
       url: this.url,
-      subject
+      subject,
+      transactionNumber: this.transactionNumber,
+      amountPaid: this.amountPaid,
+      transactionDate: this.transactionDate
     });
 
-    // 2) Definir opções do e-mail
     const mailOptions = {
       from: this.from,
       to: this.to,
       subject,
       html,
-      text: convert(html) // Atualize a função de conversão
+      text: convert(html)
     };
 
-    // 3) Criar o transportador e enviar o e-mail
     await this.newTransport().sendMail(mailOptions);
-  }
-
-  async sendWelcome() {
-    await this.send('welcome', 'Bem-vindo à família do microcrédito!');
-  }
-
-  async sendPasswordReset() {
-    await this.send(
-      'passwordReset',
-      'Seu token de redefinição de senha (válido por apenas 10 minutos)'
-    );
   }
 
   async makePayment() {

@@ -1,0 +1,28 @@
+extends baseEmail
+
+block content
+    p Olá #{firstName},
+    p O seu pagamento referente ao empréstimo foi efectuado com sucesso! Agradecemos pela sua pontualidade.
+    p Detalhes da transação:
+    table
+        tbody
+            tr
+                td Número da transação:
+                td #{transactionNumber}
+            tr
+                td Valor pago:
+                td #{amountPaid}
+            tr
+                td Data:
+                td #{transactionDate}
+    p Para mais informações ou para visualizar os detalhes do seu pagamento, clique no link abaixo:
+    table.btn.btn-primary(role='presentation' border='0' cellpadding='0' cellspacing='0')
+        tbody
+            tr
+                td(align='left')
+                    table(role='presentation' border='0' cellpadding='0' cellspacing='0')
+                        tbody
+                            tr
+                                td
+                                    a(href=`${url}`, target='_blank') Ver detalhes do pagamento
+    p Se você tiver alguma dúvida, não hesite em nos contactar!
