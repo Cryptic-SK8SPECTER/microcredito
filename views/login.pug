@@ -1,15 +1,44 @@
-extends base
+doctype html
+html(lang='en')
+  // [Head] start
+  head
+    title Microcredito | Login
+    // [Meta]
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width,initial-scale=1,user-scalable=0,minimal-ui')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    // [Font] Family
 
-block content
-  main.main
-    .login-form
-      h2.heading-secondary.ma-bt-lg Log into your account
-      form.form.form--login
-        .form__group
-          label.form__label(for='email') Email address
-          input#email.form__input(type='email', placeholder='you@example.com', required)
-        .form__group.ma-bt-md
-          label.form__label(for='password') Password
-          input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
-        .form__group
-          button.btn.btn--green Login
+    link#main-style-link(rel='stylesheet' href='css/style.css')
+    link(rel='stylesheet' href='css/style.v2.css')
+    link(rel='stylesheet' href='css/style-preset.css')
+
+  body(data-pc-preset='preset-1' data-pc-sidebar-caption='true' data-pc-layout='vertical' data-pc-direction='ltr' data-pc-theme_contrast='' data-pc-theme='light')
+
+    .auth-main.login-form
+      .auth-wrapper.v1
+        .auth-form
+          .card.my-5
+            .card-body
+              .text-center
+                .d-grid.my-3
+                  h4.text-center.f-w-500.mb-3 Faça login com seu e-mail
+              form.form.form--login
+                .mb-3
+                  input#email.form-control.form__input(type='email' placeholder='Email Address')
+                .mb-3
+                  input#password.form-control.form__input(type='password' minlength='8' placeholder='••••••••')
+                .d-flex.mt-1.justify-content-between.align-items-center
+                  .form-check
+                    input#customCheckc1.form-check-input.input-primary(type='checkbox' checked='')
+                    label.form-check-label.text-muted(for='customCheckc1') Lembre de mim?
+                  h6.text-secondary.f-w-400.mb-0
+                    a(href='/forgot-password') Esqueceu sua senha?
+                .d-grid.mt-4
+                  button.btn.btn-primary(type='submit') Login
+                .d-flex.justify-content-between.align-items-end.mt-4
+                  h6.f-w-500.mb-0 Não tem uma conta?
+                  a.link-primary(href='#') Criar uma conta
+
+    script( src='/js/bundle.js')
+

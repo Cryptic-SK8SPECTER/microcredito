@@ -1,0 +1,44 @@
+extends base
+
+block content
+      .pc-container
+        .pc-content
+          .row
+            .col-12
+              .card.table-card
+                .card-header.d-flex.align-items-center.justify-content-between.py-3
+                  h5.mb-0 Lista de requisi&ccedil;&otilde;es de empr&eacute;stimo
+                  button.btn.btn-sm.btn-link-primary Ver tudo
+                .card-body
+                  .table-responsive
+                    table#pc-dt-simple.table.table-hover
+                      thead
+                        tr
+                          th Nome
+                          th valor solicitado
+                          th taxa
+                          th Data
+                          th Quantia total
+                          th Status
+                          th.text-end A&ccedil;&atilde;o
+                      tbody
+                        each loan in loans
+                          tr
+                            td
+                              .d-flex.align-items-center
+                                .flex-shrink-0
+                                  img.img-radius.wid-40(src=`/images/users/${loan.user.photo}` alt='user image')
+                                .flex-grow-1.ms-3
+                                  h6.mb-0=loan.user.name
+                            td= `${loan.price} MZN`
+                            td= `${loan.rate}%`
+                            td= `${loan.createdAt}`
+
+                            td= `${loan.totalPrice} MZN`
+                            td
+                              span.badge.text-bg-danger Pendente
+                            td.text-end
+                              a.avtar.avtar-xs.btn-light-success.approve-loan-form(href='#', data-id=loan._id)
+                                i.ti.ti-check.f-20
+                              a.avtar.avtar-xs.btn-light-danger.reject-loan-form(href='#' data-id=loan._id)
+                                i.ti.ti-x.f-20

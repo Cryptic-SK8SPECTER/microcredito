@@ -1,0 +1,90 @@
+extends base
+
+block content
+  .pc-container
+    .pc-content
+      .row
+        .col-sm-12
+          .tab-content
+            .row
+              .col-lg-4.col-xxl-3
+                .card
+                  .card-body.Contacto-relative
+                    .Contacto-absolute.end-0.top-0.p-3
+                      span.badge.bg-primary Pro
+                    .text-center.mt-3
+                      .chat-avtar.d-inline-flex.mx-auto
+                        img.rounded-circle.img-fluid.wid-70(src=`images/users/${user.photo}`, alt='User image')
+                      h5.mb-0= user.name.split(' ')[0]
+                      p.text-muted.text-sm= user.contact
+                      hr.my-3.border.border-secondary-subtle
+                      .row.g-3
+                        .col-4
+                          h5.mb-0= loanStatusCounts.Pagos
+                          small.text-muted Pagos
+                        .col-4.border.border-top-0.border-bottom-0
+                          h5.mb-0= loanStatusCounts.Pendentes
+                          small.text-muted Pendentes
+                        .col-4
+                          h5.mb-0=loanStatusCounts.Cancelados
+                          small.text-muted Cancelados
+                      hr.my-3.border.border-secondary-subtle
+                      .d-inline-flex.align-items-center.justify-content-start.w-100.mb-3
+                        i.ti.ti-mail.me-2
+                        p.mb-0
+                          a.__cf_email__(href='/cdn-cgi/l/email-protection' data-cfemail='52333c213a333c12353f333b3e7c313d3f')=user.email
+                      .d-inline-flex.align-items-center.justify-content-start.w-100.mb-3
+                        i.ti.ti-phone.me-2
+                        p.mb-0=user.contact
+                      .d-inline-flex.align-items-center.justify-content-start.w-100.mb-3
+                        i.ti.ti-map-pin.me-2
+                        p.mb-0=user.country
+              .col-lg-8.col-xxl-9
+                .table-responsive
+                  table#pc-dt-simple.table.table-hover
+                    thead
+                      tr
+                        th valor solicitado
+                        th taxa
+                        th Data
+                        th Quantia total
+                        th Status
+                        if user.role === 'client'
+                          th Ação
+                    tbody
+                      each loan in loans
+                        tr
+                          td= `${loan.price} MZN`
+                          td= `${loan.rate}%`
+                          td
+                            - const formattedDate = new Date(loan.createdAt)
+                            - const day = String(formattedDate.getDate()).padStart(2, '0')
+                            - const month = String(formattedDate.getMonth() + 1).padStart(2, '0')
+                            - const year = formattedDate.getFullYear()
+                            | #{day}/#{month}/#{year}
+                          td= `${loan.totalPrice} MZN`
+                          td
+                            if loan.status === 'Paid'
+                              span.badge.text-bg-success Concluído
+                            else if loan.status === 'Pending'    
+                              span.badge.text-bg-warning Pendente
+                            else if loan.status === 'Late'
+                              span.badge.text-bg-warning Atrasado 
+                            else if loan.status === 'Approved'
+                              span.badge.text-bg-primary Aprovado
+                            else if loan.status === 'Canceled'
+                              span.badge.text-bg-danger Cancelado
+                            else if loan.status === 'Rejected'
+                              span.badge.text-bg-danger Rejeitado
+                          td 
+                            if user.role === 'client'
+                              if loan.status === 'Approved' || loan.status === 'Pending' || loan.status === 'Late' || loan.status === 'Partially Paid'
+                                button.btn.btn-icon.btn-link-success.pay-loan(data-loan-id=`${loan.id}`) Pagar
+                              else if loan.status === 'Rejected' || loan.status === 'Canceled'
+                                button.btn.btn-icon.btn-link-danger(type='button')
+                                  i.ti.ti-alert-triangle
+                              else if loan.status === 'Paid'    
+                                button.btn.btn-icon.btn-link-success(type='button')
+                                  i.ti.ti-circle-check
+
+

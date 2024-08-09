@@ -6,6 +6,10 @@ const router = express.Router();
 
 // router.param('id', tourController.checkID);
 
+router.use(authController.protect);
+
+router.get('/checkout-session/:loanId', paymentController.getCheckoutSession);
+
 router.route('/').get(paymentController.getAllPayments);
 
 router

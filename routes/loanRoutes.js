@@ -5,6 +5,16 @@ const userController = require('./../controllers/userController');
 
 const router = express.Router();
 
+router.route('/loan-performance').get(loanController.getLoanPerformance);
+router
+  .route('/loan-distribution-status')
+  .get(loanController.getLoanDistributionByStatus);
+router.route('/delinquency-rate').get(loanController.getDelinquencyRate);
+router.route('/loan-profitability').get(loanController.getLoanProfitability);
+
+router.post('/loans/:id/approve', loanController.approveLoan);
+router.post('/loans/:id/reject', loanController.rejectLoan);
+
 router
   .route('/')
   .get(

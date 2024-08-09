@@ -1,0 +1,647 @@
+extends base
+
+block content 
+    html
+    head
+    body
+        .pc-container
+            .pc-content
+                // [ Main Content ] start
+                .row
+                    // [ sample-page ] start
+                    .col-sm-12
+                        .chat-wrapper
+                            #offcanvas_User_list.offcanvas-xxl.offcanvas-start.chat-offcanvas(tabindex='-1')
+                                .offcanvas-header
+                                    button.btn-close(data-bs-dismiss='offcanvas' data-bs-target='#offcanvas_User_list' aria-label='Close')
+                                .offcanvas-body.p-0
+                                    #chat-user_list.show.collapse.collapse-horizontal
+                                        .chat-user_list
+                                            .card.overflow-hidden
+                                                .card-body
+                                                    h5.mb-4
+                                                        | Messages
+                                                        span.avtar.avtar-xs.bg-light-primary.rounded-circle 9
+                                                    .form-search
+                                                        i.ti.ti-search
+                                                        input.form-control(type='search' placeholder='Search Followers')
+                                                .scroll-block.simplebar-scrollable-y(data-simplebar='init')
+                                                    .simplebar-wrapper(style='margin: 0px;')
+                                                        .simplebar-height-auto-observer-wrapper
+                                                            .simplebar-height-auto-observer
+                                                        .simplebar-mask
+                                                            .simplebar-offset(style='right: 0px; bottom: 0px;')
+                                                                .simplebar-content-wrapper(tabindex='0' role='region' aria-label='scrollable content' style='height: 100%; overflow: hidden scroll;')
+                                                                    .simplebar-content(style='padding: 0px;')
+                                                                        .card-body.p-0
+                                                                            .list-group.list-group-flush
+                                                                                a.list-group-item.list-group-item-action.p-3(href='#')
+                                                                                    .d-flex.align-items-center
+                                                                                        .chat-avtar
+                                                                                            img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-1.jpg' alt='User image')
+                                                                                            .bg-success.chat-badge
+                                                                                        .flex-grow-1.mx-2
+                                                                                            h6.mb-0
+                                                                                                | John Doe
+                                                                                                span.float-end.text-sm.text-muted.f-w-400 2h ago
+                                                                                            span.text-sm.text-muted
+                                                                                                | Technical Department
+                                                                                                span.float-end
+                                                                                                    span.chat-badge-status.bg-danger.text-white 9
+                                                                                a.list-group-item.list-group-item-action.p-3(href='#')
+                                                                                    .d-flex.align-items-center
+                                                                                        .chat-avtar
+                                                                                            img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-2.jpg' alt='User image')
+                                                                                            .bg-success.bg-opacity-50.chat-badge
+                                                                                        .flex-grow-1.mx-2
+                                                                                            h6.mb-0
+                                                                                                | Keefs
+                                                                                                span.float-end.text-sm.text-muted.f-w-400 3h ago
+                                                                                            span.text-sm.text-muted
+                                                                                                | Support Executive
+                                                                                                span.float-end
+                                                                                                    span.chat-badge-status.bg-success.text-white
+                                                                                                        i.ti.ti-check
+                                                                                a.list-group-item.list-group-item-action.p-3(href='#')
+                                                                                    .d-flex.align-items-center
+                                                                                        .chat-avtar
+                                                                                            img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-3.jpg' alt='User image')
+                                                                                            .bg-secondary.bg-opacity-50.chat-badge
+                                                                                        .flex-grow-1.mx-2
+                                                                                            h6.mb-0
+                                                                                                | Lazaro
+                                                                                                span.float-end.text-sm.text-muted.f-w-400 Yesterday
+                                                                                            span.text-sm.text-muted
+                                                                                                | Teamworks
+                                                                                                span.float-end
+                                                                                                    span.chat-badge-status.bg-secondary.text-white.bg-opacity-50
+                                                                                                        i.ti.ti-check
+                                                                                a.list-group-item.list-group-item-action.p-3(href='#')
+                                                                                    .d-flex.align-items-center
+                                                                                        .chat-avtar
+                                                                                            img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-3.jpg' alt='User image')
+                                                                                            .bg-secondary.bg-opacity-50.chat-badge
+                                                                                        .flex-grow-1.mx-2
+                                                                                            h6.mb-0
+                                                                                                | Adeline
+                                                                                                span.float-end.text-sm.text-muted.f-w-400 4/25/2021
+                                                                                            span.text-sm.text-muted
+                                                                                                | Teamworks
+                                                                                                span.float-end
+                                                                                                    span.chat-badge-status.bg-secondary.text-white.bg-opacity-50
+                                                                                                        i.ti.ti-check
+                                                                                a.list-group-item.list-group-item-action.p-3(href='#')
+                                                                                    .d-flex.align-items-center
+                                                                                        .chat-avtar
+                                                                                            img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-1.jpg' alt='User image')
+                                                                                            .bg-success.chat-badge
+                                                                                        .flex-grow-1.mx-2
+                                                                                            h6.mb-0
+                                                                                                | John Doe
+                                                                                                span.float-end.text-sm.text-muted.f-w-400 2h ago
+                                                                                            span.text-sm.text-muted
+                                                                                                | Technical Department
+                                                                                                span.float-end
+                                                                                                    span.chat-badge-status.bg-danger.text-white 9
+                                                                                a.list-group-item.list-group-item-action.p-3(href='#')
+                                                                                    .d-flex.align-items-center
+                                                                                        .chat-avtar
+                                                                                            img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-2.jpg' alt='User image')
+                                                                                            .bg-secondary.bg-opacity-50.chat-badge
+                                                                                        .flex-grow-1.mx-2
+                                                                                            h6.mb-0
+                                                                                                | Keefs
+                                                                                                span.float-end.text-sm.text-muted.f-w-400 3h ago
+                                                                                            span.text-sm.text-muted
+                                                                                                | Support Executive
+                                                                                                span.float-end
+                                                                                                    span.chat-badge-status.bg-success.text-white
+                                                                                                        i.ti.ti-check
+                                                                                a.list-group-item.list-group-item-action.p-3(href='#')
+                                                                                    .d-flex.align-items-center
+                                                                                        .chat-avtar
+                                                                                            img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-3.jpg' alt='User image')
+                                                                                            .bg-secondary.bg-opacity-50.chat-badge
+                                                                                        .flex-grow-1.mx-2
+                                                                                            h6.mb-0
+                                                                                                | Lazaro
+                                                                                                span.float-end.text-sm.text-muted.f-w-400 Yesterday
+                                                                                            span.text-sm.text-muted
+                                                                                                | Teamworks
+                                                                                                span.float-end
+                                                                                                    span.chat-badge-status.bg-secondary.text-white.bg-opacity-50
+                                                                                                        i.ti.ti-check
+                                                                                a.list-group-item.list-group-item-action.p-3(href='#')
+                                                                                    .d-flex.align-items-center
+                                                                                        .chat-avtar
+                                                                                            img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-3.jpg' alt='User image')
+                                                                                            .bg-secondary.bg-opacity-50.chat-badge
+                                                                                        .flex-grow-1.mx-2
+                                                                                            h6.mb-0
+                                                                                                | Adeline
+                                                                                                span.float-end.text-sm.text-muted.f-w-400 4/25/2021
+                                                                                            span.text-sm.text-muted
+                                                                                                | Teamworks
+                                                                                                span.float-end
+                                                                                                    span.chat-badge-status.bg-secondary.text-white.bg-opacity-50
+                                                                                                        i.ti.ti-check
+                                                        .simplebar-placeholder(style='width: 258px; height: 583px;')
+                                                    .simplebar-track.simplebar-horizontal(style='visibility: hidden;')
+                                                        .simplebar-scrollbar(style='width: 0px; display: none;')
+                                                    .simplebar-track.simplebar-vertical(style='visibility: visible;')
+                                                        .simplebar-scrollbar(style='height: 25px; transform: translate3d(0px, 0px, 0px); display: block;')
+                                                .card-body.p-0
+                                                    .list-group.list-group-flush
+                                                        a.list-group-item.list-group-item-action(href='#')
+                                                            i.ti.ti-power
+                                                            span Logout
+                                                        a.list-group-item.list-group-item-action(href='#')
+                                                            i.ti.ti-settings
+                                                            span Setting
+                                                        .list-group-item
+                                                            .d-flex.align-items-center
+                                                                .chat-avtar
+                                                                    img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-5.jpg' alt='User image')
+                                                                    i.chat-badge.bg-success
+                                                                .flex-grow-1.mx-3
+                                                                    h6.mb-0 John Doe
+                                                                .dropdown
+                                                                    a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                        i.ti.ti-chevron-right.f-16
+                                                                    .dropdown-menu.dropdown-menu-end
+                                                                        a.dropdown-item(href='#')
+                                                                            i.chat-badge.bg-success
+                                                                                Active
+                                                                        a.dropdown-item(href='#')
+                                                                            i.chat-badge.bg-warning
+                                                                                Away
+                                                                        a.dropdown-item(href='#')
+                                                                            i.chat-badge.bg-secondary
+                                                                                Edit Do not disturb
+                            .chat-content
+                                .card.mb-0
+                                    .card-header.p-3
+                                        .d-flex.align-items-center
+                                            ul.list-inline.me-auto.mb-0
+                                                li.list-inline-item.align-bottom
+                                                    a.d-xxl-none.avtar.avtar-s.btn-link-secondary(href='#' data-bs-toggle='offcanvas' data-bs-target='#offcanvas_User_list')
+                                                        i.ti.ti-menu-2.f-18
+                                                    a.d-none.d-xxl-inline-flex.avtar.avtar-s.btn-link-secondary(href='#' data-bs-toggle='collapse' data-bs-target='#chat-user_list')
+                                                        i.ti.ti-menu-2.f-18
+                                                li.list-inline-item
+                                                    .d-flex.align-items-center
+                                                        .chat-avtar
+                                                            img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-5.jpg' alt='User image')
+                                                            i.chat-badge.bg-success
+                                                        .flex-grow-1.mx-3.d-none.d-sm-inline-block
+                                                            h6.mb-0 Alene
+                                                            span.text-sm.text-muted ui/ux designer
+                                            ul.list-inline.ms-auto.mb-0
+                                                li.list-inline-item
+                                                    a.avtar.avtar-s.btn-link-secondary(href='#')
+                                                        i.ti.ti-phone-call.f-18
+                                                li.list-inline-item
+                                                    a.avtar.avtar-s.btn-link-secondary(href='#')
+                                                        i.ti.ti-video.f-18
+                                                li.list-inline-item
+                                                    a.d-xxl-none.avtar.avtar-s.btn-link-secondary(href='#' data-bs-toggle='offcanvas' data-bs-target='#offcanvas_User_info')
+                                                        i.ti.ti-info-circle.f-18
+                                                    a.d-none.d-xxl-inline-flex.avtar.avtar-s.btn-link-secondary(href='#' data-bs-toggle='collapse' data-bs-target='#chat-user_info')
+                                                        i.ti.ti-info-circle.f-18
+                                                li.list-inline-item
+                                                    .dropdown
+                                                        a.avtar.avtar-s.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                            i.ti.ti-dots.f-18
+                                                        .dropdown-menu.dropdown-menu-end
+                                                            a.dropdown-item(href='#') Name
+                                                            a.dropdown-item(href='#') Date
+                                                            a.dropdown-item(href='#') Ratting
+                                                            a.dropdown-item(href='#') Unread
+                                    .scroll-block.chat-message.simplebar-scrollable-y(data-simplebar='init')
+                                        .simplebar-wrapper(style='margin: 0px;')
+                                            .simplebar-height-auto-observer-wrapper
+                                                .simplebar-height-auto-observer
+                                            .simplebar-mask
+                                                .simplebar-offset(style='right: 0px; bottom: 0px;')
+                                                    .simplebar-content-wrapper(tabindex='0' role='region' aria-label='scrollable content' style='height: 100%; overflow: hidden scroll;')
+                                                        .simplebar-content(style='padding: 0px;')
+                                                            .card-body
+                                                                .message-out
+                                                                    .d-flex.align-items-end.flex-column
+                                                                        p.mb-1.text-muted
+                                                                            small 9h ago
+                                                                        .message.d-flex.align-items-end.flex-column
+                                                                            .d-flex.align-items-center.mb-1.chat-msg
+                                                                                .flex-shrink-0
+                                                                                    ul.list-inline.ms-auto.mb-0.chat-msg-option
+                                                                                        li.list-inline-item
+                                                                                            .dropdown
+                                                                                                a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                                                    i.ti.ti-dots-vertical.f-18
+                                                                                                .dropdown-menu
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-back-up
+                                                                                                            Reply
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-forward-up
+                                                                                                            Forward
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-copy
+                                                                                                        |  Copy
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-trash
+                                                                                                        |  Delete
+                                                                                        li.list-inline-item
+                                                                                            a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                                i.ti.ti-edit-circle.f-18
+                                                                                .flex-grow-1.ms-3
+                                                                                    .msg-content.bg-primary
+                                                                                        p.mb-0 Hi...Henny!!
+                                                                            .d-flex.align-items-center.mb-1.chat-msg
+                                                                                .flex-shrink-0
+                                                                                    ul.list-inline.ms-auto.mb-0.chat-msg-option
+                                                                                        li.list-inline-item
+                                                                                            .dropdown
+                                                                                                a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                                                    i.ti.ti-dots-vertical.f-18
+                                                                                                .dropdown-menu
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-back-up
+                                                                                                            Reply
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-forward-up
+                                                                                                            Forward
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-copy
+                                                                                                        |  Copy
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-trash
+                                                                                                        |  Delete
+                                                                                        li.list-inline-item
+                                                                                            a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                                i.ti.ti-edit-circle.f-18
+                                                                                .flex-grow-1.ms-3
+                                                                                    .msg-content.bg-primary
+                                                                                        p.mb-0 How can i cap you today?
+                                                                .message-in
+                                                                    .d-flex
+                                                                        .flex-shrink-0
+                                                                            .chat-avtar
+                                                                                img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-3.jpg' alt='User image')
+                                                                                i.chat-badge.bg-success
+                                                                        .flex-grow-1.mx-3
+                                                                            .d-flex.align-items-start.flex-column
+                                                                                p.mb-1.text-muted
+                                                                                    | Agilulf Fuxg 
+                                                                                    small 11:23 AM
+                                                                                .message.d-flex.align-items-start.flex-column
+                                                                                    .d-flex.align-items-center.mb-1.chat-msg
+                                                                                        .flex-grow-1.me-3
+                                                                                            .msg-content.card.mb-0
+                                                                                                p.mb-0 Hey.. Bill
+                                                                                        .flex-shrink-0
+                                                                                            ul.list-inline.ms-auto.mb-0.chat-msg-option
+                                                                                                li.list-inline-item
+                                                                                                    .dropdown
+                                                                                                        a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                                                            i.ti.ti-dots-vertical.f-18
+                                                                                                        .dropdown-menu
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-arrow-back-up
+                                                                                                                    Reply
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-arrow-forward-up
+                                                                                                                    Forward
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-copy
+                                                                                                                    Copy
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-trash
+                                                                                                                    Delete
+                                                                                                li.list-inline-item
+                                                                                                    a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                                        i.ti.ti-edit-circle.f-18
+                                                                                    .d-flex.align-items-center.mb-1.chat-msg
+                                                                                        .flex-grow-1.me-3
+                                                                                            .msg-content.card.mb-0
+                                                                                                p.mb-0 nice to meet you!
+                                                                                        .flex-shrink-0
+                                                                                            ul.list-inline.ms-auto.mb-0.chat-msg-option
+                                                                                                li.list-inline-item
+                                                                                                    .dropdown
+                                                                                                        a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                                                            i.ti.ti-dots-vertical.f-18
+                                                                                                        .dropdown-menu
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-arrow-back-up
+                                                                                                                    Reply
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-arrow-forward-up
+                                                                                                                    Forward
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-copy
+                                                                                                                    Copy
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-trash
+                                                                                                                    Delete
+                                                                                                li.list-inline-item
+                                                                                                    a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                                        i.ti.ti-edit-circle.f-18
+                                                                .message-out
+                                                                    .d-flex.align-items-end.flex-column
+                                                                        p.mb-1.text-muted
+                                                                            small 9h ago
+                                                                        .message.d-flex.align-items-end.flex-column
+                                                                            .d-flex.align-items-center.mb-1.chat-msg
+                                                                                .flex-shrink-0
+                                                                                    ul.list-inline.ms-auto.mb-0.chat-msg-option
+                                                                                        li.list-inline-item
+                                                                                            .dropdown
+                                                                                                a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                                                    i.ti.ti-dots-vertical.f-18
+                                                                                                .dropdown-menu
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-back-up
+                                                                                                            Reply
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-forward-up
+                                                                                                            Forward
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-copy
+                                                                                                        |  Copy
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-trash
+                                                                                                        |  Delete
+                                                                                        li.list-inline-item
+                                                                                            a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                                i.ti.ti-edit-circle.f-18
+                                                                                .flex-grow-1.ms-3
+                                                                                    .msg-content.bg-primary
+                                                                                        p.mb-0 Hi...Henny!!
+                                                                            .d-flex.align-items-center.mb-1.chat-msg
+                                                                                .flex-shrink-0
+                                                                                    ul.list-inline.ms-auto.mb-0.chat-msg-option
+                                                                                        li.list-inline-item
+                                                                                            .dropdown
+                                                                                                a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                                                    i.ti.ti-dots-vertical.f-18
+                                                                                                .dropdown-menu
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-back-up
+                                                                                                            Reply
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-forward-up
+                                                                                                            Forward
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-copy
+                                                                                                        |  Copy
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-trash
+                                                                                                        |  Delete
+                                                                                        li.list-inline-item
+                                                                                            a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                                i.ti.ti-edit-circle.f-18
+                                                                                .flex-grow-1.ms-3
+                                                                                    .msg-content.bg-primary
+                                                                                        p.mb-0 Are u listening me ?
+                                                                            .d-flex.align-items-center.mb-1.chat-msg
+                                                                                .flex-shrink-0
+                                                                                    ul.list-inline.ms-auto.mb-0.chat-msg-option
+                                                                                        li.list-inline-item
+                                                                                            .dropdown
+                                                                                                a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                                                    i.ti.ti-dots-vertical.f-18
+                                                                                                .dropdown-menu
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-back-up
+                                                                                                            Reply
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-forward-up
+                                                                                                            Forward
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-copy
+                                                                                                        |  Copy
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-trash
+                                                                                                        |  Delete
+                                                                                        li.list-inline-item
+                                                                                            a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                                i.ti.ti-edit-circle.f-18
+                                                                                .flex-grow-1.ms-3
+                                                                                    .msg-content.bg-primary
+                                                                                        p.mb-0 How can i cap you today?
+                                                                .message-in
+                                                                    .d-flex
+                                                                        .flex-shrink-0
+                                                                            .chat-avtar
+                                                                                img.rounded-circle.img-fluid.wid-40(src='images/user/avatar-3.jpg' alt='User image')
+                                                                                i.chat-badge.bg-success
+                                                                        .flex-grow-1.mx-3
+                                                                            .d-flex.align-items-start.flex-column
+                                                                                p.mb-1.text-muted
+                                                                                    | Agilulf Fuxg 
+                                                                                    small 11:23 AM
+                                                                                .message.d-flex.align-items-start.flex-column
+                                                                                    .d-flex.align-items-center.mb-1.chat-msg
+                                                                                        .flex-grow-1.me-3
+                                                                                            .msg-content.card.mb-0
+                                                                                                p.mb-0
+                                                                                                    | Lorem Ipsum is simply dummy text of the
+                                                                                                    | printing and typesetting industry. Lorem
+                                                                                                    | Ipsum has been the industry&apos;s standard
+                                                                                                    | dummy text ever since the 1500s.
+                                                                                        .flex-shrink-0
+                                                                                            ul.list-inline.ms-auto.mb-0.chat-msg-option
+                                                                                                li.list-inline-item
+                                                                                                    .dropdown
+                                                                                                        a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                                                            i.ti.ti-dots-vertical.f-18
+                                                                                                        .dropdown-menu
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-arrow-back-up
+                                                                                                                    Reply
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-arrow-forward-up
+                                                                                                                    Forward
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-copy
+                                                                                                                    Copy
+                                                                                                            a.dropdown-item(href='#')
+                                                                                                                i.ti.ti-trash
+                                                                                                                    Delete
+                                                                                                li.list-inline-item
+                                                                                                    a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                                        i.ti.ti-edit-circle.f-18
+                                                                .message-out
+                                                                    .d-flex.align-items-end.flex-column
+                                                                        p.mb-1.text-muted
+                                                                            small 9h ago
+                                                                        .message.d-flex.align-items-end.flex-column
+                                                                            .d-flex.align-items-center.mb-1.chat-msg
+                                                                                .flex-shrink-0
+                                                                                    ul.list-inline.ms-auto.mb-0.chat-msg-option
+                                                                                        li.list-inline-item
+                                                                                            .dropdown
+                                                                                                a.avtar.avtar-xs.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                                                                    i.ti.ti-dots-vertical.f-18
+                                                                                                .dropdown-menu
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-back-up
+                                                                                                            Reply
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-arrow-forward-up
+                                                                                                            Forward
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-copy
+                                                                                                        |  Copy
+                                                                                                    a.dropdown-item(href='#')
+                                                                                                        i.ti.ti-trash
+                                                                                                        |  Delete
+                                                                                        li.list-inline-item
+                                                                                            a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                                i.ti.ti-edit-circle.f-18
+                                                                                .flex-grow-1.ms-3
+                                                                                    .msg-content.bg-primary
+                                                                                        p.mb-0
+                                                                                            | Lorem Ipsum is simply dummy text of the
+                                                                                            | printing and typesetting industry. Lorem
+                                                                                            | Ipsum has been the industry&apos;s standard dummy
+                                                                                            | text ever since the 1500s.
+                                            .simplebar-placeholder(style='width: 453px; height: 879px;')
+                                        .simplebar-track.simplebar-horizontal(style='visibility: hidden;')
+                                            .simplebar-scrollbar(style='width: 0px; display: none;')
+                                        .simplebar-track.simplebar-vertical(style='visibility: visible;')
+                                            .simplebar-scrollbar(style='height: 53px; transform: translate3d(0px, 140px, 0px); display: block;')
+                                    .card-footer.py-2.px-3
+                                        textarea.form-control.border-0.shadow-none(placeholder='Type a Message' rows='2')
+                                        hr.my-2
+                                        .d-sm-flex.align-items-center
+                                            ul.list-inline.me-auto.mb-0
+                                                li.list-inline-item
+                                                    a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                        i.ti.ti-paperclip.f-18
+                                                li.list-inline-item
+                                                    a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                        i.ti.ti-photo.f-18
+                                                li.list-inline-item
+                                                    a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                        i.ti.ti-mood-smile.f-18
+                                                li.list-inline-item
+                                                    a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                        i.ti.ti-volume.f-18
+                                            ul.list-inline.ms-auto.mb-0
+                                                li.list-inline-item
+                                                    a.avtar.avtar-s.btn-link-primary(href='#')
+                                                        i.ti.ti-send.f-18
+                            #offcanvas_User_info.offcanvas-xxl.offcanvas-end.chat-offcanvas(tabindex='-1')
+                                .offcanvas-header
+                                    button.btn-close(data-bs-dismiss='offcanvas' data-bs-target='#offcanvas_User_info' aria-label='Close')
+                                .offcanvas-body.p-0
+                                    #chat-user_info.collapse.collapse-horizontal
+                                        .chat-user_info
+                                            .card
+                                                .text-center.card-body.position-relative.pb-0
+                                                    h5.text-start Profile View
+                                                    .position-absolute.end-0.top-0.p-3.d-none.d-xxl-inline-flex
+                                                        a.avtar.avtar-xs.btn-link-danger.btn-pc-default(href='#' data-bs-toggle='collapse' data-bs-target='#chat-user_info')
+                                                            i.ti.ti-x.f-16
+                                                    .chat-avtar.d-inline-flex.mx-auto
+                                                        img.rounded-circle.img-fluid.wid-100(src='images/user/avatar-5.jpg' alt='User image')
+                                                    h5.mb-0 Alene
+                                                    p.text-muted.text-sm Sr. Customer Manager
+                                                    .d-flex.align-items-center.justify-content-center.mb-4
+                                                        i.chat-badge.bg-success.me-2
+                                                        span.badge.bg-light-success Available
+                                                    ul.list-inline.ms-auto.mb-0
+                                                        li.list-inline-item
+                                                            a.avtar.avtar-s.btn-link-secondary(href='#')
+                                                                i.ti.ti-phone-call.f-18
+                                                        li.list-inline-item
+                                                            a.avtar.avtar-s.btn-link-secondary(href='#')
+                                                                i.ti.ti-message-circle.f-18
+                                                        li.list-inline-item
+                                                            a.avtar.avtar-s.btn-link-secondary(href='#')
+                                                                i.ti.ti-video.f-18
+                                                .scroll-block(data-simplebar='init')
+                                                    .simplebar-wrapper(style='margin: 0px;')
+                                                        .simplebar-height-auto-observer-wrapper
+                                                            .simplebar-height-auto-observer
+                                                        .simplebar-mask
+                                                            .simplebar-offset(style='right: 0px; bottom: 0px;')
+                                                                .simplebar-content-wrapper(tabindex='0' role='region' aria-label='scrollable content' style='height: auto; overflow: hidden;')
+                                                                    .simplebar-content(style='padding: 0px;')
+                                                                        .card-body
+                                                                            .row.mb-3
+                                                                                .col-6
+                                                                                    .p-3.rounded.bg-light-primary
+                                                                                        p.mb-1 All File
+                                                                                        .d-flex.align-items-center
+                                                                                            i.ti.ti-folder.f-22.text-primary
+                                                                                            h4.mb-0.ms-2 231
+                                                                                .col-6
+                                                                                    .p-3.rounded.bg-light-secondary
+                                                                                        p.mb-1 All Link
+                                                                                        .d-flex.align-items-center
+                                                                                            i.ti.ti-link.f-22.text-secondary
+                                                                                            h4.mb-0.ms-2 231
+                                                                            .form-check.form-switch.d-flex.align-items-center.justify-content-between.p-0
+                                                                                label.form-check-label.h5.mb-0(for='customSwitchemlnot1') Notification
+                                                                                input#customSwitchemlnot1.form-check-input.h5.m-0.position-relative(type='checkbox' checked='')
+                                                                            hr.my-3.border.border-secondary-subtle
+                                                                            a.btn.border-0.p-0.text-start.w-100(data-bs-toggle='collapse' href='#filtercollapse1')
+                                                                                .float-end
+                                                                                    i.ti.ti-chevron-down
+                                                                                h5.mb-0 Information
+                                                                            #filtercollapse1.collapse.show
+                                                                                .py-3
+                                                                                    .d-flex.align-items-center.justify-content-between.mb-2
+                                                                                        p.mb-0 Address
+                                                                                        p.mb-0.text-muted Port Narcos
+                                                                                    .d-flex.align-items-center.justify-content-between.mb-2
+                                                                                        p.mb-0 Email
+                                                                                        p.mb-0.text-muted
+                                                                                            a.__cf_email__(href='/cdn-cgi/l/email-protection' data-cfemail='640508010a0124070b0914050a1d4a070b09') [email&nbsp;protected]
+                                                                                    .d-flex.align-items-center.justify-content-between.mb-2
+                                                                                        p.mb-0 Phone
+                                                                                        p.mb-0.text-muted 380-293-0177
+                                                                                    .d-flex.align-items-center.justify-content-between
+                                                                                        p.mb-0 Last visited
+                                                                                        p.mb-0.text-muted 2 hours
+                                                                            hr.my-3.border.border-secondary-subtle
+                                                                            a.btn.border-0.p-0.text-start.w-100(data-bs-toggle='collapse' href='#filtercollapse2')
+                                                                                .float-end
+                                                                                    i.ti.ti-chevron-down
+                                                                                h5.mb-0 File type
+                                                                            #filtercollapse2.collapse.show
+                                                                                .py-3
+                                                                                    .d-flex.align-items-center.mb-2
+                                                                                        a.avtar.avtar-s.btn-light-success(href='#')
+                                                                                            i.ti.ti-file-text.f-20
+                                                                                        .flex-grow-1.ms-3
+                                                                                            h6.mb-0 Document
+                                                                                            span.text-muted.text-sm 123 files, 193MB
+                                                                                        a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                            i.ti.ti-chevron-right.f-16
+                                                                                    .d-flex.align-items-center.mb-2
+                                                                                        a.avtar.avtar-s.btn-light-warning(href='#')
+                                                                                            i.ti.ti-photo.f-20
+                                                                                        .flex-grow-1.ms-3
+                                                                                            h6.mb-0 Photos
+                                                                                            span.text-muted.text-sm 53 files, 321MB
+                                                                                        a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                            i.ti.ti-chevron-right.f-16
+                                                                                    .d-flex.align-items-center.mb-2
+                                                                                        a.avtar.avtar-s.btn-light-primary(href='#')
+                                                                                            i.ti.ti-id.f-20
+                                                                                        .flex-grow-1.ms-3
+                                                                                            h6.mb-0 Other
+                                                                                            span.text-muted.text-sm 49 files, 193MB
+                                                                                        a.avtar.avtar-xs.btn-link-secondary(href='#')
+                                                                                            i.ti.ti-chevron-right.f-16
+                                                        .simplebar-placeholder(style='width: 0px; height: 0px;')
+                                                    .simplebar-track.simplebar-horizontal(style='visibility: hidden;')
+                                                        .simplebar-scrollbar(style='width: 0px; display: none;')
+                                                    .simplebar-track.simplebar-vertical(style='visibility: hidden;')
+                                                        .simplebar-scrollbar(style='height: 0px; display: none;')
+                    // [ sample-page ] end
+                    // [ Main Content ] end

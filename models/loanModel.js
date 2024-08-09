@@ -12,11 +12,9 @@ const loanSchema = new mongoose.Schema(
       required: [true, 'Loan amount is mandatory'],
       min: [0, 'Amount paid cannot be less than 0']
     },
-    paymentTerm: {
-      type: Number,
-      required: [true, 'A tour must have a payment term'],
-      min: [1, 'Payment term must be at least 1 month'],
-      max: [12, 'Payment term must be less than 12 months']
+    paymentDeadline: {
+      type: Date,
+      required: [true, 'A loan must have a payment deadline']
     },
     rate: {
       type: Number,
@@ -47,13 +45,18 @@ const loanSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['Pending', 'Late', 'Approved', 'Partially Paid'],
+      enum: ['Pending', 'Late', 'Approved', 'Paid', 'Canceled', 'Rejected'],
       default: 'Pending'
     },
     createdAt: {
-      type: Date,
-      default: Date.now(),
-      select: false
+      type: String,
+      default: function() {
+        const formattedDate = new Date();
+        const day = String(formattedDate.getDate()).padStart(2, '0');
+        const month = String(formattedDate.getMonth() + 1).padStart(2, '0');
+        const year = formattedDate.getFullYear();
+        return `${day}/${month}/${year}`;
+      }
     }
   },
   {
@@ -61,6 +64,25 @@ const loanSchema = new mongoose.Schema(
     toObject: { virtuals: true }
   }
 );
+
+loanSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: 'user'
+  });
+  next();
+});
+
+// Middleware para calcular o prazo de pagamento com base no paymentTerm e na data de criação
+loanSchema.pre('save', function(next) {
+  if (this.isNew) {
+    const termInMonths = this.paymentTerm;
+    this.paymentDeadline = new Date(this.createdAt);
+    this.paymentDeadline.setMonth(
+      this.paymentDeadline.getMonth() + termInMonths
+    );
+  }
+  next();
+});
 
 // Pre-save middleware to calculate total price before saving
 loanSchema.pre('save', function(next) {
@@ -97,15 +119,13 @@ loanSchema.pre('save', function(next) {
   next();
 });
 
-// Virtual property to calculate remaining months
-loanSchema.virtual('remainingMonths').get(function() {
-  const currentDate = new Date();
-  const createdAt = new Date(this.createdAt);
-  const monthsPassed =
-    (currentDate.getFullYear() - createdAt.getFullYear()) * 12 +
-    currentDate.getMonth() -
-    createdAt.getMonth();
-  return Math.max(0, this.paymentTerm - monthsPassed);
+loanSchema.pre('save', function(next) {
+  const formattedDate = new Date(this.createdAt);
+  const day = String(formattedDate.getDate()).padStart(2, '0');
+  const month = String(formattedDate.getMonth() + 1).padStart(2, '0'); // Mês começa do 0
+  const year = formattedDate.getFullYear();
+  this.createdAt = `${day}/${month}/${year}`;
+  next();
 });
 
 const Loan = mongoose.model('Loan', loanSchema);

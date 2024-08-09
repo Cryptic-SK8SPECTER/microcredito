@@ -1,14 +1,151 @@
-header.header
-  nav.nav.nav--tours
-    a.nav__el(href='/') All tours
-  .header__logo
-    img(src='/img/logo-white.png' alt='Natours logo')
-  nav.nav.nav--user
-    if user
-      a.nav__el.nav__el--logout Log out
-      a.nav__el(href='/me')
-        img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
-        span= user.name.split(' ')[0]
-    else
-      a.nav__el(href='/login') Log in
-      a.nav__el.nav__el--cta(href='#') Sign up
+header.pc-header
+  .header-wrapper
+    //  [Mobile Media Block] start 
+    .me-auto.pc-mob-drp
+      ul.list-unstyled
+        //  ======= Menu collapse Icon ===== 
+        li.pc-h-item.pc-sidebar-collapse
+          a.pc-head-link.ms-0#sidebar-hide(href='#')
+            i.ti.ti-menu-2
+        li.pc-h-item.pc-sidebar-popup
+          a.pc-head-link.ms-0#mobile-collapse(href='#')
+            i.ti.ti-menu-2
+    //  [Mobile Media Block end] 
+    .ms-auto
+      ul.list-unstyled
+        li.dropdown.pc-h-item
+          a.pc-head-link.dropdown-toggle.arrow-none.me-0(data-bs-toggle='dropdown', href='#', role='button', aria-haspopup='false', aria-expanded='false')
+            svg.pc-icon
+              use(href='#custom-sun-1')
+          .dropdown-menu.dropdown-menu-end.pc-h-dropdown
+            a.dropdown-item(href='#!', onclick='layout_change(\'dark\')')
+              svg.pc-icon
+                use(href='#custom-moon')
+              span Dark
+              |  
+            a.dropdown-item(href='#!', onclick='layout_change(\'light\')')
+              svg.pc-icon
+                use(href='#custom-sun-1')
+              span Light
+              |  
+            a.dropdown-item(href='#!', onclick='layout_change_default()')
+              svg.pc-icon
+                use(href='#custom-setting-2')
+              span Default
+        li.dropdown.pc-h-item
+          a.pc-head-link.dropdown-toggle.arrow-none.me-0(data-bs-toggle='dropdown', href='#', role='button', aria-haspopup='false', aria-expanded='false')
+            svg.pc-icon
+              use(href='#custom-setting-2')
+          .dropdown-menu.dropdown-menu-end.pc-h-dropdown
+            a.dropdown-item(href='/me')
+              i.ti.ti-user
+              |  
+              span Minha conta
+              |  
+            a.dropdown-item(href='/me')
+              i.ti.ti-settings
+              |  
+              span Configurações
+              |  
+            a.dropdown-item(href='/suport')
+              i.ti.ti-headset
+              |  
+              span Suporte
+              |  
+            a.dropdown-item.nav__el--logout
+              i.ti.ti-power
+              |  
+              span Sair
+        li.dropdown.pc-h-item
+          a.pc-head-link.dropdown-toggle.arrow-none.me-0(data-bs-toggle='dropdown', href='#', role='button', aria-haspopup='false', aria-expanded='false')
+            svg.pc-icon
+              use(href='#custom-notification')
+            span.badge.bg-success.pc-h-badge 3
+          .dropdown-menu.dropdown-notification.dropdown-menu-end.pc-h-dropdown
+            .dropdown-header.d-flex.align-items-center.justify-content-between
+              h5.m-0 Notificações
+              a.btn.btn-link.btn-sm(href='#!') Marcar todas como lidas
+            .dropdown-body.text-wrap.header-notification-scroll.position-relative(style='max-height: calc(100vh - 215px)')
+              p.text-span Hoje
+              .card.mb-2
+                .card-body
+                  .d-flex
+                    .flex-shrink-0
+                      svg.pc-icon.text-primary
+                        use(href='#custom-sms')
+                    .flex-grow-1.ms-3
+                      span.float-end.text-sm.text-muted 1 hora atrás
+                      h5.text-body.mb-2 Messagem
+                      p.mb-0.
+
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
+
+              .card.mb-2
+                .card-body
+                  .d-flex
+                    .flex-shrink-0
+                      svg.pc-icon.text-primary
+                        use(href='#custom-user-bold')
+                    .flex-grow-1.ms-3
+                      span.float-end.text-sm.text-muted 12 horas atrás
+                      h5.text-body.mb-2 solicitação de empréstimo
+                      p.mb-2
+                        span.text-dark Jonny aber
+                        |  precisa de um empréstimo
+
+                      button.btn.btn-sm.btn-outline-secondary.me-2.
+
+                        Recusar
+
+                      button.btn.btn-sm.btn-primary Aceitar
+            .text-center.py-2
+              a.link-danger(href='#!') Clear all Notifications
+        li.dropdown.pc-h-item.header-user-profile
+        
+          a.pc-head-link.dropdown-toggle.arrow-none.me-0(data-bs-toggle='dropdown', href='#', role='button', aria-haspopup='false', data-bs-auto-close='outside', aria-expanded='false')
+            if user && user.photo
+             img.user-avtar(src=`/images/users/${user.photo}` , alt='user-image')
+            else
+              img.user-avtar(src='/images/default.jpg' , alt='user-image') 
+          .dropdown-menu.dropdown-user-profile.dropdown-menu-end.pc-h-dropdown
+            .dropdown-header.d-flex.align-items-center.justify-content-between
+              h5.m-0 Perfil
+            .dropdown-body
+              .profile-notification-scroll.position-relative(style='max-height: calc(100vh - 225px)')
+                .d-flex.mb-1
+                  .flex-shrink-0
+                    if user && user.photo
+                      img.user-avtar.wid-35(src=`/images/users/${user.photo}` , alt='user-image')
+                    else  
+                      img.user-avtar.wid-35(src='/images/default.jpg' , alt='user-image')
+                  .flex-grow-1.ms-3
+                    h6.mb-1 Carson Darrin 🖖
+                    span
+                      a.__cf_email__(href='/cdn-cgi/l/email-protection', data-cfemail='9ffcfeedecf0f1b1fbfeededf6f1dffcf0f2effef1e6b1f6f0') [email protected]
+                hr.border-secondary.border-opacity-50
+                .card
+                  .card-body.py-3
+                    .d-flex.align-items-center.justify-content-between
+                      h5.mb-0.d-inline-flex.align-items-center
+                        svg.pc-icon.text-muted.me-2
+                          use(href='#custom-notification-outline')
+                        | Noticação
+
+                      .form-check.form-switch.form-check-reverse.m-0
+                        input.form-check-input.f-18(type='checkbox', role='switch')
+                p.text-span Manage
+                a.dropdown-item(href='#')
+                  span
+                    svg.pc-icon.text-muted.me-2
+                      use(href='#custom-setting-outline')
+                    span Configurações
+                a.dropdown-item(href='#')
+                  span
+                    svg.pc-icon.text-muted.me-2
+                      use(href='#custom-lock-outline')
+                    span Alterar senha
+                .d-grid.mb-3
+                  button.btn.btn-primary
+                    svg.pc-icon.me-2
+                      use(href='#custom-logout-1-outline')
+                    | Sair

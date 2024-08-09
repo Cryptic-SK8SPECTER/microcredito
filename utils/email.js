@@ -72,8 +72,4 @@ module.exports = class Email {
       'Seu token de redefinição de senha (válido por apenas 10 minutos)'
     );
   }
-
-  async makePayment() {
-    await this.send('payment', 'Pagamento efectuado com sucesso');
-  }
 };

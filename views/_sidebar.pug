@@ -1,0 +1,91 @@
+// [ Pre-loader ] start
+html
+  head
+  body
+    .page-loader
+      .bar
+    // [ Pre-loader ] End
+    // [ Sidebar Menu ] start
+    nav.pc-sidebar
+      .navbar-wrapper
+        .m-header
+          a.b-brand.text-danger(href='#')
+            //
+              <img
+              src=".images/logo-dark.svg"
+              class="img-fluid logo-lg"
+              alt="logo"
+              />
+            | Microcredito
+            span.badge.bg-light-success.rounded-pill.ms-2.theme-version v9.4.1
+        .navbar-content
+          .card.pc-user-card
+            .card-body
+              .d-flex.align-items-center
+                .flex-shrink-0
+                  if user && user.photo
+                    img.user-avtar.wid-45.rounded-circle(src=`/images/users/${user.photo}` alt='user-image')
+                  else
+                    img.user-avtar.wid-45.rounded-circle(src='/images/default.jpg' alt='user-image')
+                .flex-grow-1.ms-3.me-2
+                  if user && user.name
+                    h6.mb-0= user.name.split(' ')[0]
+                  else
+                    h6.mb-0= 'Usuário'
+                  if user && user.role
+                    small= user.role
+                  else
+                    small= 'Role não definido'
+                a.btn.btn-icon.btn-link-secondary.avtar(data-bs-toggle='collapse' href='#pc_sidebar_userlink')
+                  svg.pc-icon
+                    use(xlink:href='#custom-sort-outline')
+              #pc_sidebar_userlink.collapse.pc-user-links
+                .pt-3
+                  a(href='/me')
+                    i.ti.ti-user
+                    |  
+                    span Minha conta
+                  a(href='/me')
+                    i.ti.ti-settings
+                    span Configura&ccedil;&otilde;es
+                  a.nav__el--logout-v1
+                    i.ti.ti-power
+                    |  
+                    span Sair
+          ul.pc-navbar
+            li.pc-item.pc-caption
+              label Navega&ccedil;&atilde;o
+            li.pc-item.pc-hasmenu
+              a.pc-link(href='#!')
+                span.pc-micon
+                  svg.pc-icon
+                    use(xlink:href='#custom-status-up')
+                span.pc-mtext Dashboard
+                span.pc-arrow
+                  i(data-feather='chevron-right')
+            li.pc-item
+              a.pc-link(href='#')
+                span.pc-micon
+                  svg.pc-icon
+                    use(xlink:href='#custom-calendar-1')
+                span.pc-mtext Calend&aacute;rio
+            li.pc-item
+              a.pc-link(href='chat.html')
+                span.pc-micon
+                  svg.pc-icon
+                    use(xlink:href='#custom-message-2')
+                span.pc-mtext Suporte
+            li.pc-item.pc-hasmenu
+              a.pc-link(href='payment.html')
+                span.pc-micon
+                  svg.pc-icon
+                    use(xlink:href='#custom-dollar-square')
+                span.pc-mtext Hist&oacute;rico de empr&eacute;stimos
+                span.pc-arrow
+                  i(data-feather='chevron-right')
+            li.pc-item
+              a.pc-link(href='profile.html')
+                svg.feather.feather-settings(xmlns='http://www.w3.org/2000/svg' width='10' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                  circle(cx='12' cy='12' r='3')
+                  path(d='M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z')
+                span Configura&ccedil;&otilde;es

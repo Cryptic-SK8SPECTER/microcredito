@@ -1,67 +1,278 @@
 extends base
 
-mixin navItem(link, text, icon, active)
-  li(class=`${active ? 'side-nav--active' : ''}`)
-    a(href=`${link}`)
-      svg
-        use(xlink:href=`img/icons.svg#icon-${icon}`)
-      | #{text}
-
 block content
-  main.main
-    .user-view
-      nav.user-view__menu
-        ul.side-nav
-          +navItem('#', 'Settings', 'settings', true)
-          +navItem('/my-tours', 'My bookings', 'briefcase')
-          +navItem('#', 'My reviews', 'star')
-          +navItem('#', 'Billing', 'credit-card')
+    .pc-container
+      .pc-content
+        .row
+          // [ sample-page ] start
+          .col-sm-12
+            .card
+              .card-body.py-0
+                ul#myTab.nav.nav-tabs.profile-tabs(role='tablist')
+                  li.nav-item
+                    a#profile-tab-1.nav-link.active(data-bs-toggle='tab' href='#profile-1' role='tab' aria-selected='true')
+                      i.ti.ti-user.me-2
+                      | Perfil
+                  li.nav-item
+                    a#profile-tab-2.nav-link(data-bs-toggle='tab' href='#profile-2' role='tab' aria-selected='true')
+                      i.ti.ti-file-text.me-2
+                      | Detalhes pessoais
+                  li.nav-item
+                    a#profile-tab-4.nav-link(data-bs-toggle='tab' href='#profile-4' role='tab' aria-selected='true')
+                      i.ti.ti-lock.me-2
+                      | Alterar a senha
+                  if (user.role === 'admin' || user.role === 'user')    
+                    li.nav-item
+                      a#profile-tab-5.nav-link(data-bs-toggle='tab' href='#profile-5' role='tab' aria-selected='true')
+                        i.ti.ti-users.me-2
+                        | Clientes
+            .tab-content
+              #profile-1.tab-pane.show.active(role='tabpanel' aria-labelledby='profile-tab-1')
+                .row
+                  .col-lg-4.col-xxl-3
+                    .card
+                      .card-body.Contacto-relative
+                        .Contacto-absolute.end-0.top-0.p-3
+                          span.badge.bg-primary Pro
+                        .text-center.mt-3
+                          .chat-avtar.d-inline-flex.mx-auto
+                            img.rounded-circle.img-fluid.wid-70(src=`images/users/${user.photo}` alt='User image')
+                          h5.mb-0=user.name.split(' ')[0]
+                          hr.my-3.border.border-secondary-subtle
+                          .d-inline-flex.align-items-center.justify-content-start.w-100.mb-3
+                            i.ti.ti-mail.me-2
+                            p.mb-0
+                              a.__cf_email__(href='/cdn-cgi/l/email-protection' data-cfemail='52333c213a333c12353f333b3e7c313d3f')=user.email
+                          .d-inline-flex.align-items-center.justify-content-start.w-100.mb-3
+                            i.ti.ti-phone.me-2
+                            p.mb-0=user.contact
+                          .d-inline-flex.align-items-center.justify-content-start.w-100.mb-3
+                            i.ti.ti-map-pin.me-2
+                            p.mb-0=user.country
+                  .col-lg-8.col-xxl-9
+                    .card
+                      .card-header
+                        h5 Detalhes pessoais
+                      .card-body
+                        ul.list-group.list-group-flush
+                          li.list-group-item.px-0.pt-0
+                            .row
+                              .col-md-6
+                                p.mb-1.text-muted Nome
+                                p.mb-0=user.name
+                              .col-md-6
+                                p.mb-1.text-muted Email
+                                a.__cf_email__(href='/cdn-cgi/l/email-protection' data-cfemail='e1808f9289808fcf8589d9d0a1868c80888dcf828e8c')= user.email
+                          li.list-group-item.px-0
+                            .row
+                              .col-md-6
+                                p.mb-1.text-muted Contato
+                                p.mb-0=user.contact
+                              .col-md-6
+                                p.mb-1.text-muted Pa&iacute;s
+                                p.mb-0=user.country
+                          li.list-group-item.px-0
+                            .row
+                              .col-md-6
+                                p.mb-1.text-muted Endereço
+                                p.mb-0=user.address
+                              .col-md-6
+                                p.mb-1.text-muted Nuit
+                                p.mb-0= user.nuit
+                          li.list-group-item.px-0.pb-0
+                            p.mb-1.text-muted Role
+                            p.mb-0
+                              = user.role
+              #profile-2.tab-pane(role='tabpanel' aria-labelledby='profile-tab-2')
+                .row
+                  form.form.form-user-data
+                    .col-lg-12
+                      .card
+                        .card-header
+                          h5 Informa&ccedil;&otilde;es pessoais
+                        .card-body
+                          .row
+                            .col-sm-12.text-center.mb-3
+                              .user-upload.wid-75
+                                img.img-fluid.form__user-photo(src=`images/users/${user.photo}` alt='img' )
+                                label.img-avtar-upload(for='photo')
+                                  i.ti.ti-camera.f-24.mb-1
+                                  span Upload
+                                input.form__upload(type='file' id='photo' accept='image/*' name='photo')
+                            .col-sm-6
+                              .mb-3
+                                label.form-label Nome
+                                input#name.form-control(type='text' value=`${user.name}` name='name')
+                            .col-sm-6
+                              .mb-3
+                                label.form-label Email
+                                input#email.form-control(type='gmail' value=`${user.email}` name='email')
+                            .col-sm-6
+                              .mb-3
+                                label.form-label Endere&ccedil;o
+                                input#address.form-control(type='text' value=`${user.address}` name='address')
+                            .col-sm-6
+                              .mb-3
+                                label.form-label Contato
+                                input#contact.form-control(type='text' value=`${user.contact}` name='contact')
+                            .col-sm-6
+                              .mb-3
+                                label.form-label Nuit
+                                input#nuit.form-control(type='text' value=`${user.nuit}` name='nuit')
+                            .col-sm-6
+                              .mb-3
+                                label.form-label País
+                                select#country.form-control
+                                  option(value='') Selecione um país
+                                  option(value='Moçambique' selected=user.country=='Moçambique', , name='country') Moçambique
+                                  option(value='África do Sul' selected=user.country=='África do Sul', name='country') África do Sul
+                                  option(value='Albânia' selected=user.country=='Albânia', name='country') Albânia
+                                  option(value='Alemanha' selected=user.country=='Alemanha', name='country') Alemanha
+                                  option(value='Andorra' selected=user.country=='Andorra', name='country') Andorra
+                                  option(value='Angola' selected=user.country=='Angola', name='country') Angola
+                                  option(value='Antígua e Barbuda' selected=user.country=='Antígua e Barbuda', name='country') Antígua e Barbuda
+                                  option(value='Arábia Saudita' selected=user.country=='Arábia Saudita') Arábia Saudita
+                                  option(value='Argélia' selected=user.country=='Argélia', name='country') Argélia
+                                  option(value='Argentina' selected=user.country=='Argentina', name='country') Argentina
+                                  option(value='Arménia' selected=user.country=='Arménia', name='country') Arménia
+                                  option(value='Austrália' selected=user.country=='Austrália', name='country') Austrália
+                                  option(value='Áustria' selected=user.country=='Áustria', name='country') Áustria
+                                  option(value='Azerbaijão' selected=user.country=='Azerbaijão', name='country') Azerbaijão
+                                  option(value='Bahamas' selected=user.country=='Bahamas', name='country') Bahamas
+                                  option(value='Bangladesh' selected=user.country=='Bangladesh', name='country') Bangladesh
+                                  option(value='Barbados' selected=user.country=='Barbados', name='country') Barbados
+                                  option(value='Bélgica' selected=user.country=='Bélgica', name='country') Bélgica
+                                  option(value='Belize' selected=user.country=='Belize', name='country') Belize
+                                  option(value='Benim' selected=user.country=='Benim', name='country') Benim
+                                  option(value='Bolívia' selected=user.country=='Bolívia') Bolívia
+                                  option(value='Bósnia e Herzegovina' selected=user.country=='Bósnia e Herzegovina', name='country') Bósnia e Herzegovina
+                                  option(value='Botswana' selected=user.country=='Botswana', name='country') Botswana
+                                  option(value='Brasil' selected=user.country=='Brasil', name='country') Brasil
+                                  option(value='Brunei' selected=user.country=='Brunei', name='country') Brunei
+                                  option(value='Bulgária' selected=user.country=='Bulgária', name='country') Bulgária
+                                  option(value='Burquina Faso' selected=user.country=='Burquina Faso', name='country') Burquina Faso
+                                  option(value='Burundi' selected=user.country=='Burundi', name='country') Burundi
+                    .col-12.text-end.btn-page
+                      button.btn.btn-outline-secondary Cancelar
+                      button.btn.btn-primary Atualizar
+              #profile-4.tab-pane(role='tabpanel' aria-labelledby='profile-tab-4')
+                .card
+                  form.form.form-user-password
+                    .card-header
+                      h5 Alterar a senha
+                    .card-body
+                      .row
+                        .col-sm-6
+                          .mb-3
+                            label.form-label Senha Antiga
+                            input#password-current.form__input.form-control(type='password', placeholder='••••••••', required, minlength='8')
+                          .mb-3
+                            label.form-label Nova Senha
+                            input#password.form__input.form-control(type='password', placeholder='••••••••', required, minlength='8')
+                          .mb-3
+                            label.form-label Confirme sua senha
+                            input#password-confirm.form__input.form-control(type='password', placeholder='••••••••', required, minlength='8')
+                        .col-sm-6
+                          h5 A nova senha deve conter:
+                          ul.list-group.list-group-flush
+                            li.list-group-item
+                              i.ti.ti-circle-check.text-success.f-16.me-2
+                                Pelo menos 8 caracteres
+                            li.list-group-item
+                              i.ti.ti-circle-check.text-success.f-16.me-2
+                                Pelo menos 1 letra min&uacute;scula (a-z)
+                            li.list-group-item
+                              i.ti.ti-circle-check.text-success.f-16.me-2
+                                Pelo menos 1 letra mai&uacute;scula (A-Z)
+                            li.list-group-item
+                              i.ti.ti-circle-check.text-success.f-16.me-2
+                                Pelo menos 1 n&uacute;mero (0-9)
+                            li.list-group-item
+                              i.ti.ti-circle-check.text-success.f-16.me-2
+                                Pelo menos 1 caractere especial
+                    .card-footer.text-end.btn-page
+                      button.btn.btn-outline-secondary Cancelar
+                      button.btn.btn-primary.btn--save-password Salvar senha
+              if user.role === 'admin' || user.role === 'user'       
+                #profile-5.tab-pane(role='tabpanel' aria-labelledby='profile-tab-5')
+                  .card
+                    .card-header
+                      h5 Lista de clientes
+                    .card-body
+                      .dt-responsive.table-responsive
+                        #basic-key-table_wrapper.dt-container.dt-bootstrap5
+                          .row.mt-2.justify-content-md-center
+                            .col-12
+                              table#basic-key-table.table.table-striped.table-bordered.nowrap.dataTable(aria-describedby='basic-key-table_info' style='position: relative; width: 0px')
+                                colgroup
+                                  col(style='width: 0px')
+                                  col(style='width: 0px')
+                                  col(style='width: 0px')
+                                  col(style='width: 0px')
+                                  col(style='width: 0px')
+                                  col(style='width: 0px')
+                                thead
+                                  tr(role='row')
+                                    th.dt-orderable-asc.dt-orderable-desc.dt-ordering-asc(data-dt-column='0' rowspan='1' colspan='1' aria-sort='ascending' aria-label='Nome: Activate to invert sorting' tabindex='0')
+                                      span.dt-column-title(role='button') Nome
+                                      span.dt-column-order
+                                    th.dt-orderable-asc.dt-orderable-desc(data-dt-column='1' rowspan='1' colspan='1' aria-label='Contacto: Activate to sort' tabindex='0')
+                                      span.dt-column-title(role='button') Contacto
+                                      span.dt-column-order
+                                    th.dt-orderable-asc.dt-orderable-desc(data-dt-column='2' rowspan='1' colspan='1' aria-label='Nuit: Activate to sort' tabindex='0')
+                                      span.dt-column-title(role='button') Nuit
+                                      span.dt-column-order
+                                    th.dt-type-numeric.dt-orderable-asc.dt-orderable-desc(data-dt-column='3' rowspan='1' colspan='1' aria-label='Age: Activate to sort' tabindex='0')
+                                      span.dt-column-title(role='button') Endereço
+                                      span.dt-column-order
+                                    th.dt-type-date.dt-orderable-asc.dt-orderable-desc(data-dt-column='4' rowspan='1' colspan='1' aria-label='Data de inicio: Activate to sort' tabindex='0')
+                                      span.dt-column-title(role='button') Data de inicio
+                                      span.dt-column-order
+                                    th.dt-orderable-asc.dt-orderable-desc(data-dt-column='5' rowspan='1' colspan='1' aria-label='Acções: Activate to sort' tabindex='0')
+                                      span.dt-column-title(role='button') Ac&ccedil;&otilde;es
+                                      span.dt-column-order
+                                  tbody
+                                    each client in clients
+                                      tr
+                                        td.sorting_1
+                                          div(style='position: absolute; height: 1px; width: 0px; overflow: hidden;')
+                                            input(type='text' tabindex='0')
+                                          .row
+                                            .col-auto.pe-0
+                                              img.wid-40.rounded-circle(src=`/images/users/${client.photo}` alt='user-image')
+                                            .col
+                                              h5.mb-0= client.name
+                                              p.text-muted.f-12.mb-0
+                                                a.__cf_email__(href='/cdn-cgi/l/email-protection' data-cfemail=client.email) #{client.email}
+                                        td= client.contact
+                                        td= client.nuit
+                                        td.dt-type-numeric= client.address
+                                        td.dt-type-date= client.startDate
+                                        td.text-end
+                                          ul.list-inline.mb-0
+                                            li.list-inline-item
+                                              a.avtar.avtar-s.btn-link-info.btn-pc-default(href='#')
+                                                i.ti.ti-eye.f-20
+                                            li.list-inline-item
+                                              a.avtar.avtar-s.btn-link-success.btn-pc-default(href='#')
+                                                i.ti.ti-edit.f-20
+                                            li.list-inline-item
+                                              a.avtar.avtar-s.btn-link-danger.btn-pc-default(href='#')
+                                                i.ti.ti-trash.f-20
 
-        - if (user.role === 'admin')
-          .admin-nav
-            h5.admin-nav__heading Admin
-            ul.side-nav
-              +navItem('#', 'Manage tours', 'map')
-              +navItem('#', 'Manage users', 'users')
-              +navItem('#', 'Manage reviews', 'star')
-              +navItem('#', 'Manage bookings', 'briefcase')
-
-      .user-view__content
-        .user-view__form-container
-          h2.heading-secondary.ma-bt-md Your account settings
-          
-          //- WITHOUT API
-          //- form.form.form-user-data(action='/submit-user-data' method='POST' enctype='multipart/form-data')
-          
-          //- WITH API
-          form.form.form-user-data
-            .form__group
-              label.form__label(for='name') Name
-              input#name.form__input(type='text', value=`${user.name}`, required, name='name')
-            .form__group.ma-bt-md
-              label.form__label(for='email') Email address
-              input#email.form__input(type='email', value=`${user.email}`, required, name='email')
-            .form__group.form__photo-upload
-              img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
-              input.form__upload(type='file', accept='image/*', id='photo', name='photo')
-              label(for='photo') Choose new photo
-              
-            .form__group.right
-              button.btn.btn--small.btn--green Save settings
-              
-        .line &nbsp;
-        
-        .user-view__form-container
-          h2.heading-secondary.ma-bt-md Password change
-          form.form.form-user-password
-            .form__group
-              label.form__label(for='password-current') Current password
-              input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
-            .form__group
-              label.form__label(for='password') New password
-              input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
-            .form__group.ma-bt-lg
-              label.form__label(for='password-confirm') Confirm password
-              input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
-            .form__group.right
-              button.btn.btn--small.btn--green.btn--save-password Save password
+                                tfoot
+                                  tr(role='row')
+                                    th(data-dt-column='0' rowspan='1' colspan='1')
+                                      span.dt-column-title Nome
+                                    th(data-dt-column='1' rowspan='1' colspan='1')
+                                      span.dt-column-title Contacto
+                                    th(data-dt-column='2' rowspan='1' colspan='1')
+                                      span.dt-column-title Nuit
+                                    th.dt-type-numeric(data-dt-column='3' rowspan='1' colspan='1')
+                                      span.dt-column-title Endereço
+                                    th.dt-type-date(data-dt-column='4' rowspan='1' colspan='1')
+                                      span.dt-column-title Data de inicio
+                                    th(data-dt-column='5' rowspan='1' colspan='1')
+                                      span.dt-column-title Ac&ccedil;&otilde;es
+            // [ sample-page ] end
+            // [ Main Content ] end

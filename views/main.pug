@@ -1,0 +1,238 @@
+extends base
+
+block content
+    .pc-container
+        .pc-content
+            // [ Main Content ] start
+            .row
+                .col-md-6.col-xxl-3
+                    .card
+                        .card-body
+                            .d-flex.align-items-center.justify-content-between
+                                h5.mb-0 Ganho Total
+                                select.form-select.rounded-3.form-select-sm.w-auto
+                                    option Hoje
+                                    option Semanalmente
+                                    option(selected='selected') Por m&ecirc;s
+                            .my-3
+                                #new-orders-graph
+                                h5.text-center.mt-3
+                                    | $30200
+                                    small.text-primary
+                                        i.ti.ti-arrow-up-right
+                                        |  30.6%
+                            .d-grid
+                                a.btn.btn-link-primary(role='button' href='#') View More
+                .col-md-6.col-xxl-3
+                    .card
+                        .card-body
+                            .d-flex.align-items-center.justify-content-between
+                                h5.mb-0 Novos usu&aacute;rios
+                                select.form-select.rounded-3.form-select-sm.w-auto
+                                    option Hoje
+                                    option Semanalmente
+                                    option(selected='selected') Por m&ecirc;s
+                            .my-3
+                                #new-users-graph
+                                h5.text-center.mt-3
+                                    | $30200
+                                    small.text-success
+                                        i.ti.ti-arrow-up-right
+                                        |  30.6%
+                            .d-grid
+                                a.btn.btn-link-primary(role='button' href='#') View More
+                .col-12
+                    .card
+                        .card-header.pb-0.pt-2
+                            ul#myTab.nav.nav-tabs.analytics-tab(role='tablist')
+                                li.nav-item(role='presentation')
+                                    button#analytics-tab-1.nav-link.active(data-bs-toggle='tab' data-bs-target='#analytics-tab-1-pane' type='button' role='tab' aria-controls='analytics-tab-1-pane' aria-selected='true')
+                                        | Rentabilidade dos empr&eacute;stimos
+                                li.nav-item(role='presentation')
+                                    button#analytics-tab-2.nav-link(data-bs-toggle='tab' data-bs-target='#analytics-tab-2-pane' type='button' role='tab' aria-controls='analytics-tab-2-pane' aria-selected='false')
+                                        | Taxa de inadimpl&ecirc;ncia
+                                li.nav-item(role='presentation')
+                                    button#analytics-tab-3.nav-link(data-bs-toggle='tab' data-bs-target='#analytics-tab-3-pane' type='button' role='tab' aria-controls='analytics-tab-3-pane' aria-selected='false')
+                                        | Carteira de cr&eacute;dito
+                        .card-body
+                            .row
+                                .col-lg-7.col-xl-8
+                                    ul.list-inline.mb-3.d-flex.align-items-center.justify-content-end
+                                        li.list-inline-item
+                                            .d-flex
+                                                button.btn.btn-sm.me-1.btn-secondary(type='button')
+                                                    | Essa semana
+                                                button.btn.btn-sm.me-1.btn-light(type='button')
+                                                    | Semana passada
+                                        li.list-inline-item
+                                            a.avtar.avtar-s.btn-link-secondary.border.border-secondary(href='#')
+                                                i.ti.ti-external-link.f-18
+                                        li.list-inline-item
+                                            a.avtar.avtar-s.btn-link-secondary.border.border-secondary(href='#')
+                                                i.ti.ti-arrows-diagonal.f-18
+                                        li.list-inline-item
+                                            .dropdown
+                                                a.avtar.avtar-s.btn-link-secondary.border.border-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                    i.ti.ti-dots.f-18
+                                                .dropdown-menu.dropdown-menu-end
+                                                    a.dropdown-item(href='#')
+                                                        .i-block(data-clipboard-text='ph-duotone ph-file-pdf' data-bs-toggle='tooltip' data-filter='ph-file-pdf' aria-label='ph-duotone ph-file-pdf' data-bs-original-title='ph-duotone ph-file-pdf' style='display: inline-flex')
+                                                            i.ph-duotone.ph-file-pdf
+                                                    //
+                                                        <a class="dropdown-item" href="#">
+                                                        Excel
+                                                        </a>
+                                    #myTabContent.tab-content
+                                        #analytics-tab-1-pane.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='analytics-tab-1' tabindex='0')
+                                            #overview-chart-1
+                                        #analytics-tab-2-pane.tab-pane.fade(role='tabpanel' aria-labelledby='analytics-tab-2' tabindex='0')
+                                            #overview-chart-2
+                                        #analytics-tab-3-pane.tab-pane.fade(role='tabpanel' aria-labelledby='analytics-tab-3' tabindex='0')
+                                            #overview-chart-3
+                                .col-lg-5.col-xl-4
+                                    ul.list-group.list-group-flush
+                                        li.list-group-item
+                                            .d-flex.align-items-center
+                                                .flex-shrink-0
+                                                    .avtar.avtar-s.bg-light-secondary
+                                                        i.ti.ti-chart-bar.f-20
+                                                .flex-grow-1.ms-3
+                                                    .row.g-1
+                                                        .col-6
+                                                            p.text-muted.mb-1 Vendas totais
+                                                            h6.mb-0 1,800
+                                                        .col-6.text-end
+                                                            h6.mb-1 - 245
+                                                            p.text-danger.mb-0
+                                                                i.ti.ti-arrow-down-left
+                                                                |  30.6%
+                                        li.list-group-item
+                                            .d-flex.align-items-center
+                                                .flex-shrink-0
+                                                    .avtar.avtar-s.bg-light-secondary
+                                                        i.ti.ti-chart-arrows-vertical.f-20
+                                                .flex-grow-1.ms-3
+                                                    .row.g-1
+                                                        .col-6
+                                                            p.text-muted.mb-1 Pago parcialmente
+                                                            h6.mb-0 $5667
+                                                        .col-6.text-end
+                                                            h6.mb-1 +$2100
+                                                            p.text-success.mb-0
+                                                                i.ti.ti-arrow-up-right
+                                                                |  30.6%
+                                        li.list-group-item
+                                            .d-flex.align-items-center
+                                                .flex-shrink-0
+                                                    .avtar.avtar-s.bg-light-secondary
+                                                        i.ti.ti-ad.f-20
+                                                .flex-grow-1.ms-3
+                                                    .row.g-1
+                                                        .col-6
+                                                            p.text-muted.mb-1 Pendente
+                                                            h6.mb-0 $2500
+                                                        .col-6.text-end
+                                                            h6.mb-1 $200
+                                                            p.text-success.mb-0
+                                                                i.ti.ti-arrow-up-right
+                                                                |  10.6%
+                .col-12
+                    .row
+                        .col-12
+                            .card
+                                .card-body
+                                    .d-flex.align-items-center.justify-content-between.mb-3
+                                        .avtar.avtar-s.bg-light-secondary
+                                            i.ti.ti-currency-dollar.f-20
+                                        .dropdown
+                                            a.avtar.avtar-s.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                                i.ti.ti-dots-vertical.f-18
+                                            .dropdown-menu.dropdown-menu-end
+                                                a.dropdown-item(href='#') Name
+                                                a.dropdown-item(href='#') Date
+                                                a.dropdown-item(href='#') Ratting
+                                                a.dropdown-item(href='#') Unread
+                                    h5.mb-0 $30,200.00
+                                    p.text-muted.mb-0 Income
+                                    .mt-2
+                                        #income-graph
+                .col-xxl-3.col-md-12
+                    .row
+                        .col-md-6.col-xxl-12
+                            .card
+                                .card-body.pb-0
+                                    .d-flex.align-items-center.justify-content-between.mb-3
+                                        h5.mb-0 Metodo de pagamento
+                                        a.avtar.avtar-s.btn-link-secondary
+                                            i.ti.ti-plus.f-18
+                                ul.list-group.list-group-flush.border-top-0
+                                    li.list-group-item
+                                        .d-flex.align-items-center
+                                            .flex-shrink-0
+                                                .avtar.avtar-s.bg-light-secondary
+                                                    img.img-fluid(src='images/widget/img-paypal.png' alt='img')
+                                            .flex-grow-1.mx-2
+                                                p.mb-1 Paypal
+                                                h6.mb-0
+                                                    | +210,000 
+                                                    small.text-success + 30.6%
+                                            .flex-shrink-0
+                                                a.avtar.avtar-s.btn-link-secondary.arrow-none(href='#')
+                                                    i.ti.ti-edit.f-20
+                                                a.avtar.avtar-s.btn-link-secondary.arrow-none(href='#')
+                                                    i.ti.ti-trash.f-20
+                                    li.list-group-item
+                                        .d-flex.align-items-center
+                                            .flex-shrink-0
+                                                .avtar.avtar-s.bg-light-secondary
+                                                    img.img-fluid(src='images/widget/img-gpay.png' alt='img')
+                                            .flex-grow-1.mx-2
+                                                p.mb-1 Gpay
+                                                h6.mb-0
+                                                    | -$2,000 
+                                                    small.text-danger - 30.6%
+                                            .flex-shrink-0
+                                                a.avtar.avtar-s.btn-link-secondary.arrow-none(href='#')
+                                                    i.ti.ti-edit.f-20
+                                                a.avtar.avtar-s.btn-link-secondary.arrow-none(href='#')
+                                                    i.ti.ti-trash.f-20
+                                    li.list-group-item
+                                        .d-flex.align-items-center
+                                            .flex-shrink-0
+                                                .avtar.avtar-s.bg-light-secondary
+                                                    img.img-fluid(src='images/widget/img-phonepay.png' alt='img')
+                                            .flex-grow-1.mx-2
+                                                p.mb-1 Phone Pay
+                                                h6.mb-0
+                                                    | -$2,000 
+                                                    small.text-danger - 30.6%
+                                            .flex-shrink-0
+                                                a.avtar.avtar-s.btn-link-secondary.arrow-none(href='#')
+                                                    i.ti.ti-edit.f-20
+                                                a.avtar.avtar-s.btn-link-secondary.arrow-none(href='#')
+                                                    i.ti.ti-trash.f-20
+                                .card-footer
+                                    .d-grid
+                                        button.btn.btn-outline-secondary
+                                            i.ti.ti-plus
+                                            |  Adicionar
+                        .col-md-6.col-xxl-12
+                            .card
+                                .card-body
+                                    .d-flex.align-items-center
+                                        .flex-shrink-0
+                                            .my-n4(style='width: 130px')
+                                                #total-earning-graph-1
+                                        .flex-grow-1.mx-2
+                                            p.mb-1 Ganho total
+                                            h6.mb-0 $45,890
+                            .card
+                                .card-body
+                                    .d-flex.align-items-center
+                                        .flex-shrink-0
+                                            .my-n4(style='width: 130px')
+                                                #total-earning-graph-2
+                                        .flex-grow-1.mx-2
+                                            p.mb-1 Total de empr&eacute;stimo pendentes
+                                            h6.mb-0 $45,890
+            // [ Main Content ] end

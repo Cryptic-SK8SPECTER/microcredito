@@ -1,10 +1,16 @@
-footer.footer
-  .footer__logo
-    img(src='/img/logo-green.png' alt='Natour logo')
-  ul.footer__nav
-    li: a(href='#') About us
-    li: a(href='#') Download apps
-    li: a(href='#') Become a guide
-    li: a(href='#') Careers
-    li: a(href='#') Contact
-  p.footer__copyright &copy; by Jonas Schmedtmann. Feel free to use this project for your own purposes, EXCEPT producing your own course or tutorials!
+html
+  head
+  body
+    footer.pc-footer
+      .footer-wrapper.container-fluid
+        .row
+          .col.my-1
+            p.m-0
+              | Microcredito &hearts; elaborado pela equipe
+              a.text-danger(href='#', target='_blank') SKYTTY
+          .col-auto.my-1
+            ul.list-inline.footer-link.mb-0
+              li.list-inline-item
+                a(href='/') Home
+              li.list-inline-item
+                a(href='/suport', target='_blank') Suporte

@@ -1,0 +1,130 @@
+html
+    head
+    body
+        .pct-c-btn
+            a(href='#' data-bs-toggle='offcanvas' data-bs-target='#offcanvas_pc_layout')
+                i.ph-duotone.ph-gear-six
+        #offcanvas_pc_layout.offcanvas.border-0.pct-offcanvas.offcanvas-end(tabindex='-1')
+            .offcanvas-header
+                h5.offcanvas-title Settings
+                button.btn.btn-icon.btn-link-danger.ms-auto(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                    i.ti.ti-x
+            .pct-body.customizer-body
+                .offcanvas-body.py-0
+                    ul.list-group.list-group-flush
+                        li.list-group-item
+                            .pc-dark
+                                h6.mb-1 Theme Mode
+                                p.text-muted.text-sm
+                                    | Choose light or dark mode or Auto
+                                .row.theme-color.theme-layout
+                                    .col-4
+                                        .d-grid
+                                            button.preset-btn.btn.active(data-value='true' onclick="layout_change('light');" data-bs-toggle='tooltip' title='Light')
+                                                svg.pc-icon.text-warning
+                                                    use(xlink:href='#custom-sun-1')
+                                    .col-4
+                                        .d-grid
+                                            button.preset-btn.btn(data-value='false' onclick="layout_change('dark');" data-bs-toggle='tooltip' title='Dark')
+                                                svg.pc-icon
+                                                    use(xlink:href='#custom-moon')
+                                    .col-4
+                                        .d-grid
+                                            button.preset-btn.btn(data-value='default' onclick='layout_change_default();' data-bs-toggle='tooltip' title="Automatically sets the theme based on user's operating system's color scheme.")
+                                                span.pc-lay-icon.d-flex.align-items-center.justify-content-center
+                                                    i.ph-duotone.ph-cpu
+                        li.list-group-item
+                            h6.mb-1 Theme Contrast
+                            p.text-muted.text-sm Choose theme contrast
+                            .row.theme-contrast
+                                .col-6
+                                    .d-grid
+                                        button.preset-btn.btn(data-value='true' onclick="layout_theme_contrast_change('true');" data-bs-toggle='tooltip' title='True')
+                                            svg.pc-icon
+                                                use(xlink:href='#custom-mask')
+                                .col-6
+                                    .d-grid
+                                        button.preset-btn.btn.active(data-value='false' onclick="layout_theme_contrast_change('false');" data-bs-toggle='tooltip' title='False')
+                                            svg.pc-icon
+                                                use(xlink:href='#custom-mask-1-outline')
+                        li.list-group-item
+                            h6.mb-1 Custom Theme
+                            p.text-muted.text-sm Choose your primary theme color
+                            .theme-color.preset-color
+                                a.active(href='#!' data-bs-toggle='tooltip' title='Blue' data-value='preset-1')
+                                    i.ti.ti-checks
+                                a(href='#!' data-bs-toggle='tooltip' title='Indigo' data-value='preset-2')
+                                    i.ti.ti-checks
+                                a(href='#!' data-bs-toggle='tooltip' title='Purple' data-value='preset-3')
+                                    i.ti.ti-checks
+                                a(href='#!' data-bs-toggle='tooltip' title='Pink' data-value='preset-4')
+                                    i.ti.ti-checks
+                                a(href='#!' data-bs-toggle='tooltip' title='Red' data-value='preset-5')
+                                    i.ti.ti-checks
+                                a(href='#!' data-bs-toggle='tooltip' title='Orange' data-value='preset-6')
+                                    i.ti.ti-checks
+                                a(href='#!' data-bs-toggle='tooltip' title='Yellow' data-value='preset-7')
+                                    i.ti.ti-checks
+                                a(href='#!' data-bs-toggle='tooltip' title='Green' data-value='preset-8')
+                                    i.ti.ti-checks
+                                a(href='#!' data-bs-toggle='tooltip' title='Teal' data-value='preset-9')
+                                    i.ti.ti-checks
+                                a(href='#!' data-bs-toggle='tooltip' title='Cyan' data-value='preset-10')
+                                    i.ti.ti-checks
+                        li.list-group-item
+                            h6.mb-1 Theme layout
+                            p.text-muted.text-sm Choose your layout
+                            .theme-main-layout.d-flex.align-center.gap-1.w-100
+                                a.active(href='#!' data-bs-toggle='tooltip' title='Vertical' data-value='vertical')
+                                    img.img-fluid(src='images/customizer/caption-on.svg' alt='img')
+                                a(href='#!' data-bs-toggle='tooltip' title='Horizontal' data-value='horizontal')
+                                    img.img-fluid(src='images/customizer/horizontal.svg' alt='img')
+                                a(href='#!' data-bs-toggle='tooltip' title='Color Header' data-value='color-header')
+                                    img.img-fluid(src='images/customizer/color-header.svg' alt='img')
+                                a(href='#!' data-bs-toggle='tooltip' title='Compact' data-value='compact')
+                                    img.img-fluid(src='images/customizer/compact.svg' alt='img')
+                                a(href='#!' data-bs-toggle='tooltip' title='Tab' data-value='tab')
+                                    img.img-fluid(src='.images/customizer/tab.svg' alt='img')
+                        li.list-group-item
+                            h6.mb-1 Sidebar Caption
+                            p.text-muted.text-sm Sidebar Caption Hide/Show
+                            .row.theme-color.theme-nav-caption
+                                .col-6
+                                    .d-grid
+                                        button.preset-btn.btn-img.btn.active(data-value='true' onclick="layout_caption_change('true');" data-bs-toggle='tooltip' title='Caption Show')
+                                            img.img-fluid(src='images/customizer/caption-on.svg' alt='img')
+                                .col-6
+                                    .d-grid
+                                        button.preset-btn.btn-img.btn(data-value='false' onclick="layout_caption_change('false');" data-bs-toggle='tooltip' title='Caption Hide')
+                                            img.img-fluid(src='images/customizer/caption-off.svg' alt='img')
+                        li.list-group-item
+                            .pc-rtl
+                                h6.mb-1 Theme Layout
+                                p.text-muted.text-sm LTR/RTL
+                                .row.theme-color.theme-direction
+                                    .col-6
+                                        .d-grid
+                                            button.preset-btn.btn-img.btn.active(data-value='false' onclick="layout_rtl_change('false');" data-bs-toggle='tooltip' title='LTR')
+                                                img.img-fluid(src='.images/customizer/ltr.svg' alt='img')
+                                    .col-6
+                                        .d-grid
+                                            button.preset-btn.btn-img.btn(data-value='true' onclick="layout_rtl_change('true');" data-bs-toggle='tooltip' title='RTL')
+                                                img.img-fluid(src='images/customizer/rtl.svg' alt='img')
+                        li.list-group-item.pc-box-width
+                            .pc-container-width
+                                h6.mb-1 Layout Width
+                                p.text-muted.text-sm
+                                    | Choose Full or Container Layout
+                                .row.theme-color.theme-container
+                                    .col-6
+                                        .d-grid
+                                            button.preset-btn.btn-img.btn.active(data-value='false' onclick="change_box_container('false')" data-bs-toggle='tooltip' title='Full Width')
+                                                img.img-fluid(src='images/customizer/full.svg' alt='img')
+                                    .col-6
+                                        .d-grid
+                                            button.preset-btn.btn-img.btn(data-value='true' onclick="change_box_container('true')" data-bs-toggle='tooltip' title='Fixed Width')
+                                                img.img-fluid(src='images/customizer/fixed.svg' alt='img')
+                        li.list-group-item
+                            .d-grid
+                                button#layoutreset.btn.btn-light-danger
+                                    | Reset Layout

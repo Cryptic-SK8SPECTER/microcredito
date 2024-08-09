@@ -1,0 +1,87 @@
+extends base
+
+block content
+    .pc-container
+        .pc-content
+
+            .row
+                .col-lg-12
+                    .card.mb-3
+                        form.form-user-data-v1
+                            .card-header
+                                h5 cadastro de usu&aacute;rio
+                            .card-body
+                                .row
+                                    .col-sm-6
+                                        .mb-3
+                                            label.form-label Nome
+                                            input.form-control(type='text' id='name' name='name' required)
+                                    .col-sm-6
+                                        .mb-3
+                                            label.form-label Email
+                                            input.form-control(type='email' id='email' name='email' required)
+                                    .col-sm-6
+                                        .mb-3
+                                            label.form-label Endere&ccedil;o
+                                            input.form-control(type='text' id='address'  name='address' required)
+                                    .col-sm-6
+                                        .mb-3
+                                            label.form-label Contato
+                                            input.form-control(type='text' id='contact'  name='contact' required)
+                                    .col-sm-6
+                                        .mb-3
+                                            label.form-label Senha
+                                            input.form-control(type='password' id='password' name='password' value='111111111' minlength='8', disabled)
+                                    .col-sm-6
+                                        .mb-3
+                                            label.form-label Confirmar senha
+                                            input.form-control(type='password' id='passwordConfirm'  name='passwordConfirm' value='111111111' minlength='8', disabled)
+                                    .col-sm-6
+                                        .mb-3
+                                            label.form-label Nuit
+                                            input.form-control(type='number' id='nuit' name='nuit' required) 
+                                    .col-sm-6
+                                        .mb-3
+                                            label.form-label Pa&iacute;s 
+                                            select.form-control(name="country" id='country' required)
+                                                option(value="") Selecione um país
+                                                option(value="Moçambique") Moçambique
+                                                option(value="south-africa") África do Sul
+                                                option(value="albania") Albânia
+                                                option(value="germany") Alemanha
+                                                option(value="andorra") Andorra
+                                                option(value="angola") Angola
+                                                option(value="antigua-and-barbuda") Antígua e Barbuda
+                                                option(value="saudi-arabia") Arábia Saudita
+                                                option(value="algeria") Argélia
+                                                option(value="argentina") Argentina
+                                                option(value="armenia") Arménia
+                                                option(value="australia") Austrália
+                                                option(value="austria") Áustria
+                                                option(value="azerbaijan") Azerbaijão
+                                                option(value="bahamas") Bahamas
+                                                option(value="bangladesh") Bangladesh
+                                                option(value="barbados") Barbados
+                                                option(value="belgium") Bélgica
+                                                option(value="belize") Belize
+                                                option(value="benin") Benim
+                                                option(value="bolivia") Bolívia
+                                                option(value="bosnia-and-herzegovina") Bósnia e Herzegovina
+                                                option(value="botswana") Botswana
+                                                option(value="brazil") Brasil
+                                                option(value="brunei") Brunei
+                                                option(value="bulgaria") Bulgária
+                                                option(value="burkina-faso") Burquina Faso
+                                                option(value="burundi") Burundi
+
+                                    .col-sm-6
+                                        .mb-3
+                                            label.form-label Role
+                                            select.form-select(name='role' id='role' required)
+                                                option Selecione um n&iacute;vel de acesso
+                                                option(value='admin') Administrator
+                                                option(value='client') Cliente
+                                                option(value='user') Agente operador
+                            .col-12.text-end.btn-page
+                                .btn.btn-outline-secondary Cancelar
+                                button.btn.btn-primary.btn--save-data(type='submit') Submeter

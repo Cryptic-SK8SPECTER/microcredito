@@ -39,6 +39,13 @@ const paymentSchema = new mongoose.Schema(
   }
 );
 
+paymentSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: 'loan'
+  });
+  next();
+});
+
 const Payment = mongoose.model('Payment', paymentSchema);
 
 module.exports = Payment;

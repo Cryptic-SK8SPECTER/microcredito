@@ -4,6 +4,10 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
+  photo: {
+    type: String,
+    default: 'default.jpg'
+  },
   name: {
     type: String,
     required: [true, 'Please tell us your name']
@@ -15,15 +19,48 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email']
   },
-  photo: String,
   address: {
     type: String,
     required: [true, 'Please provide your address']
   },
+  country: {
+    type: String,
+    enum: [
+      'Moçambique',
+      'África do Sul',
+      'Albânia',
+      'Alemanha',
+      'Andorra',
+      'Angola',
+      'Antígua e Barbuda',
+      'Arábia Saudita',
+      'Argélia',
+      'Argentina',
+      'Arménia',
+      'Austrália',
+      'Áustria',
+      'Azerbaijão',
+      'Bahamas',
+      'Bangladesh',
+      'Barbados',
+      'Bélgica',
+      'Belize',
+      'Benim',
+      'Bolívia',
+      'Bósnia e Herzegovina',
+      'Botswana',
+      'Brasil',
+      'Brunei',
+      'Bulgária',
+      'Burquina Faso',
+      'Burundi'
+    ],
+    required: [true, 'Please select your country']
+  },
   role: {
     type: String,
     enum: ['user', 'client', 'admin'],
-    default: 'user'
+    required: [true, 'Please provide your role']
   },
   contact: {
     type: String,
@@ -33,6 +70,16 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please provide your nuit number'],
     minlength: 9
+  },
+  startDate: {
+    type: Date,
+    default: Date.now,
+    required: [true, 'Please provide the start date'],
+    get: function(value) {
+      return value
+        ? `${value.getDate()}/${value.getMonth() + 1}/${value.getFullYear()}`
+        : value;
+    }
   },
   password: {
     type: String,
@@ -59,6 +106,9 @@ const userSchema = new mongoose.Schema({
     select: false
   }
 });
+
+userSchema.set('toJSON', { getters: true });
+userSchema.set('toObject', { getters: true });
 
 userSchema.pre('save', async function(next) {
   // Only run this function if password was actually modified

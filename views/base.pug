@@ -1,27 +1,503 @@
 doctype html
 html
   head
-    block head
-      meta(charset='UTF-8')
-      meta(name='viewport' content='width=device-width, initial-scale=1.0')
-      link(rel='stylesheet' href='/css/style.css')
-      link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
-      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
-      title Natours | #{title}
+    title Microcrédito | #{title}
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width,initial-scale=1,user-scalable=0,minimal-ui')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    link(rel='stylesheet' href='fonts/inter/inter.css')
+    link(rel='stylesheet' href='fonts/phosphor/duotone/style.css')
+    link(rel='stylesheet' href='fonts/tabler-icons.min.css')
+    link(rel='stylesheet' href='fonts/feather.css')
+    link(rel='stylesheet' href='fonts/fontawesome.css')
+    link(rel='stylesheet' href='fonts/material.css')
+    link(rel='stylesheet' href='css/style.css')
+    link(href='css/plugins/animate.min.css' rel='stylesheet' type='text/css')
+    link(rel='stylesheet' href='css/style-preset.css')
+    link(rel='stylesheet' href='css/uikit.css')
+    link(rel='stylesheet' href='css/style.v2.css')
 
-  body
+  body(data-pc-preset='preset-1' data-pc-sidebar-caption='true' data-pc-layout='vertical' data-pc-direction='ltr', data-pc-theme_contrast, data-pc-theme='light')
+
+    // SIDEBAR
+    include _sidebar
+
     // HEADER
     include _header
 
     // CONTENT
     block content
-      h1 This is a placeholder heading
+        .pc-container
+          .pc-content
+            // [ Main Content ] start
+            .row
+              .col-12
+              .col-lg-9
+                .card
+                  .card-body
+                    .d-flex.align-items-center.justify-content-between
+                      h5.mb-0 Vis&atilde;o geral dos empr&eacute;stimos
+                      .dropdown
+                        a.avtar.avtar-s.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                          i.ti.ti-dots.f-18
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Hoje
+                          a.dropdown-item(href='#') Semanalmente
+                          a.dropdown-item(href='#') Por m&ecirc;s
+                    .row.align-items-center.justify-content-center
+                      .col-md-6.col-xl-4
+                        .mt-3.row.align-items-center
+                          .col-6
+                            p.text-muted.mb-1 Total empr&eacute;stimos
+                            h5.mb-0 34,686
+                          .col-6
+                            #total-tasks-graph
+                      .col-md-6.col-xl-4
+                        .mt-3.row.align-items-center
+                          .col-6
+                            p.text-muted.mb-1 Total pendentes
+                            h5.mb-0 3,786
+                          .col-6
+                            #pending-tasks-graph
+                      .col-md-6.col-xl-4
+                        .mt-3.d-grid
+                          button.btn.btn-primary.d-flex.align-items-center.justify-content-center.gap-2
+                            i.ti.ti-plus
+                            |  Efetuar pagamento
+              .col-lg-3
+                .card
+                  .card-body
+                    .d-flex.align-items-center
+                      .flex-shrink-0
+                        .avtar.avtar-s.bg-light-primary
+                          i.ti.ti-at.f-20
+                      .flex-grow-1.ms-3
+                        h6.mb-0 Microcredito
+                        small.text-muted @Microcredito
+                      .dropdown
+                        a.avtar.avtar-s.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                          i.ti.ti-dots-vertical.f-18
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Hoje
+                          a.dropdown-item(href='#') Semanalmente
+                          a.dropdown-item(href='#') Por m&ecirc;s
+                    .d-flex.align-items-center.justify-content-between.mt-4
+                      .user-group.able-user-group
+                        img.avtar(src='images/user/avatar-1.jpg' alt='user-image')
+                        img.avtar(src='images/user/avatar-3.jpg' alt='user-image')
+                        img.avtar(src='images/user/avatar-4.jpg' alt='user-image')
+                        img.avtar(src='images/user/avatar-5.jpg' alt='user-image')
+                        span.avtar.bg-light-primary.text-primary.text-sm +2
+                      a.avtar.avtar-s.btn.btn-primary.rounded-circle(href='#')
+                        i.ti.ti-plus.f-20
+              .col-md-6
+                .card
+                  .card-body.border-bottom.pb-0
+                    .d-flex.align-items-center.justify-content-between
+                      h5.mb-0 Empr&eacute;stimos
+                      .dropdown
+                        a.avtar.avtar-s.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                          i.ti.ti-dots-vertical.f-18
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Hoje
+                          a.dropdown-item(href='#') Semanalmente
+                          a.dropdown-item(href='#') Por m&ecirc;s
+                    ul#myTab.nav.nav-tabs.analytics-tab(role='tablist')
+                      li.nav-item(role='presentation')
+                        button#analytics-tab-1.nav-link.active(data-bs-toggle='tab' data-bs-target='#analytics-tab-1-pane' type='button' role='tab' aria-controls='analytics-tab-1-pane' aria-selected='true')
+                          | Todos os empr&eacute;stimos
+                      li.nav-item(role='presentation')
+                        button#analytics-tab-2.nav-link(data-bs-toggle='tab' data-bs-target='#analytics-tab-2-pane' type='button' role='tab' aria-controls='analytics-tab-2-pane' aria-selected='false')
+                          | Sucesso
+                      li.nav-item(role='presentation')
+                        button#analytics-tab-3.nav-link(data-bs-toggle='tab' data-bs-target='#analytics-tab-3-pane' type='button' role='tab' aria-controls='analytics-tab-3-pane' aria-selected='false')
+                          | Pendente
+                  #myTabContent.tab-content
+                    #analytics-tab-1-pane.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='analytics-tab-1' tabindex='0')
+                      ul.list-group.list-group-flush
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border AI
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Apple Inc.
+                                  p.text-muted.mb-0
+                                    small #ABLE-PRO-T00232
+                                .col-6.text-end
+                                  h6.mb-1 $210,000
+                                  p.text-danger.mb-0
+                                    i.ti.ti-arrow-down-left
+                                    |  10.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border(data-bs-toggle='tooltip' data-bs-title='10,000 Tracks')
+                                span SM
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Spotify Music
+                                  p.text-muted.mb-0
+                                    small #ABLE-PRO-T10232
+                                .col-6.text-end
+                                  h6.mb-1 - 10,000
+                                  p.text-success.mb-0
+                                    i.ti.ti-arrow-up-right
+                                    |  30.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border.bg-light-primary(data-bs-toggle='tooltip' data-bs-title='143 Posts')
+                                span MD
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Medium
+                                  p.text-muted.mb-0
+                                    small 06:30 pm
+                                .col-6.text-end
+                                  h6.mb-1 -26
+                                  p.text-warning.mb-0
+                                    i.ti.ti-arrows-left-right
+                                    |  5%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border(data-bs-toggle='tooltip' data-bs-title='143 Posts')
+                                span U
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Uber
+                                  p.text-muted.mb-0
+                                    small 08:40 pm
+                                .col-6.text-end
+                                  h6.mb-1 +210,000
+                                  p.text-success.mb-0
+                                    i.ti.ti-arrow-up-right
+                                    |  10.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border.bg-light-warning(data-bs-toggle='tooltip' data-bs-title='143 Posts')
+                                span OC
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Ola Cabs
+                                  p.text-muted.mb-0
+                                    small 07:40 pm
+                                .col-6.text-end
+                                  h6.mb-1 +210,000
+                                  p.text-success.mb-0
+                                    i.ti.ti-arrow-up-right
+                                    |  10.6%
+                    #analytics-tab-2-pane.tab-pane.fade(role='tabpanel' aria-labelledby='analytics-tab-2' tabindex='0')
+                      ul.list-group.list-group-flush
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border(data-bs-toggle='tooltip' data-bs-title='143 Posts')
+                                span U
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Uber
+                                  p.text-muted.mb-0
+                                    small 08:40 pm
+                                .col-6.text-end
+                                  h6.mb-1 +210,000
+                                  p.text-success.mb-0
+                                    i.ti.ti-arrow-up-right
+                                    |  10.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border.bg-light-warning(data-bs-toggle='tooltip' data-bs-title='143 Posts')
+                                span OC
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Ola Cabs
+                                  p.text-muted.mb-0
+                                    small 07:40 pm
+                                .col-6.text-end
+                                  h6.mb-1 +210,000
+                                  p.text-success.mb-0
+                                    i.ti.ti-arrow-up-right
+                                    |  10.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border AI
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Apple Inc.
+                                  p.text-muted.mb-0
+                                    small #ABLE-PRO-T00232
+                                .col-6.text-end
+                                  h6.mb-1 $210,000
+                                  p.text-danger.mb-0
+                                    i.ti.ti-arrow-down-left
+                                    |  10.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border(data-bs-toggle='tooltip' data-bs-title='10,000 Tracks')
+                                span SM
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Spotify Music
+                                  p.text-muted.mb-0
+                                    small #ABLE-PRO-T10232
+                                .col-6.text-end
+                                  h6.mb-1 - 10,000
+                                  p.text-success.mb-0
+                                    i.ti.ti-arrow-up-right
+                                    |  30.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border.bg-light-primary(data-bs-toggle='tooltip' data-bs-title='143 Posts')
+                                span MD
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Medium
+                                  p.text-muted.mb-0
+                                    small 06:30 pm
+                                .col-6.text-end
+                                  h6.mb-1 -26
+                                  p.text-warning.mb-0
+                                    i.ti.ti-arrows-left-right
+                                    |  5%
+                    #analytics-tab-3-pane.tab-pane.fade(role='tabpanel' aria-labelledby='analytics-tab-3' tabindex='0')
+                      ul.list-group.list-group-flush
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border(data-bs-toggle='tooltip' data-bs-title='10,000 Tracks')
+                                span SM
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Spotify Music
+                                  p.text-muted.mb-0
+                                    small #ABLE-PRO-T10232
+                                .col-6.text-end
+                                  h6.mb-1 - 10,000
+                                  p.text-success.mb-0
+                                    i.ti.ti-arrow-up-right
+                                    |  30.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border.bg-light-primary(data-bs-toggle='tooltip' data-bs-title='143 Posts')
+                                span MD
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Medium
+                                  p.text-muted.mb-0
+                                    small 06:30 pm
+                                .col-6.text-end
+                                  h6.mb-1 -26
+                                  p.text-warning.mb-0
+                                    i.ti.ti-arrows-left-right
+                                    |  5%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border(data-bs-toggle='tooltip' data-bs-title='143 Posts')
+                                span U
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Uber
+                                  p.text-muted.mb-0
+                                    small 08:40 pm
+                                .col-6.text-end
+                                  h6.mb-1 +210,000
+                                  p.text-success.mb-0
+                                    i.ti.ti-arrow-up-right
+                                    |  10.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border AI
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Apple Inc.
+                                  p.text-muted.mb-0
+                                    small #ABLE-PRO-T00232
+                                .col-6.text-end
+                                  h6.mb-1 $210,000
+                                  p.text-danger.mb-0
+                                    i.ti.ti-arrow-down-left
+                                    |  10.6%
+                        li.list-group-item
+                          .d-flex.align-items-center
+                            .flex-shrink-0
+                              .avtar.avtar-s.border.bg-light-warning(data-bs-toggle='tooltip' data-bs-title='143 Posts')
+                                span OC
+                            .flex-grow-1.ms-3
+                              .row.g-1
+                                .col-6
+                                  h6.mb-0 Ola Cabs
+                                  p.text-muted.mb-0
+                                    small 07:40 pm
+                                .col-6.text-end
+                                  h6.mb-1 +210,000
+                                  p.text-success.mb-0
+                                    i.ti.ti-arrow-up-right
+                                    |  10.6%
+                  .card-footer
+                    .row.g-2
+                      .col-md-6
+                        .d-grid
+                          button.btn.btn-outline-secondary.d-grid
+                            span.text-truncate.w-100 Ver todo o hist&oacute;rico de empr&eacute;stimo
+                      .col-md-6
+                        .d-grid
+                          button.btn.btn-primary.d-grid(data-pc-animate='fade-in-scale' type='button' data-bs-toggle='modal' data-bs-target='#animateModal')
+                            span.text-truncate.w-100 Criar novo empr&eacute;stimo
+              #animateModal.modal.fade.modal-animate(tabindex='-1' aria-hidden='true')
+                .modal-dialog
+                  .modal-content
+                    form.form-loan-data
+                      .modal-header
+                        h5.modal-title Empr&eacute;stimo
+                        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                      .modal-body
+                          .mb-3.row
+                            //
+                              <label class="col-lg-4 col-form-label text-lg-end"
+                              >Number</label
+                              >
+                            .col-lg-12
+                              input.form-control(type='number' id='price'  name='price' required  placeholder='Valor')
+                          .mb-3.row
+                            .col-lg-12
+                              input.form-control(type='date' id='paymentDeadline' name='paymentDeadline' required)
+                          .col-lg-12
+                            input.form-control(type='text'  maxlength='40' id='GuaranteesOffered'  name='GuaranteesOffered' required placeholder='Garantia')
+                            small.form-text.text-muted
+                              | As garantias oferecidas devem ter menos ou igual a 40
+                              | characters
+                      .modal-footer
+                        button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal')
+                          | Fechar
+                        button.btn.btn-primary.shadow-2(type='submit')
+                          | Submeter
+              .col-md-6
+                .card
+                  .card-body
+                    .d-flex.align-items-center.justify-content-between
+                      h5.mb-0 Stauts
+                      .dropdown
+                        a.avtar.avtar-s.btn-link-secondary.dropdown-toggle.arrow-none(href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                          i.ti.ti-dots-vertical.f-18
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Hoje
+                          a.dropdown-item(href='#') Semanalmente
+                          a.dropdown-item(href='#') Por m&ecirc;s
+                    #total-income-graph
+                    .row.g-3.mt-3
+                      .col-sm-6
+                        .bg-body.p-3.rounded
+                          .d-flex.align-items-center.mb-2
+                            .flex-shrink-0
+                              span.p-1.d-block.bg-primary.rounded-circle
+                                span.visually-hidden New alerts
+                            .flex-grow-1.ms-2
+                              p.mb-0 Parcialmente
+                          h6.mb-0
+                            | $23,876
+                            small.text-muted
+                              i.ti.ti-chevrons-up
+                              |  +$763,43
+                      .col-sm-6
+                        .bg-body.p-3.rounded
+                          .d-flex.align-items-center.mb-2
+                            .flex-shrink-0
+                              span.p-1.d-block.bg-warning.rounded-circle
+                                span.visually-hidden New alerts
+                            .flex-grow-1.ms-2
+                              p.mb-0 Pendente
+                          h6.mb-0
+                            | $23,876
+                            small.text-muted
+                              i.ti.ti-chevrons-up
+                              |  +$763,43
+                      .col-sm-6
+                        .bg-body.p-3.rounded
+                          .d-flex.align-items-center.mb-2
+                            .flex-shrink-0
+                              span.p-1.d-block.bg-success.rounded-circle
+                                span.visually-hidden New alerts
+                            .flex-grow-1.ms-2
+                              p.mb-0 Sucesso
+                          h6.mb-0
+                            | $23,876
+                            small.text-muted
+                              i.ti.ti-chevrons-up
+                              |  +$763,43
+                      .col-sm-6
+                        .bg-body.p-3.rounded
+                          .d-flex.align-items-center.mb-2
+                            .flex-shrink-0
+                              span.p-1.d-block.bg-danger.rounded-circle
+                                span.visually-hidden New alerts
+                            .flex-grow-1.ms-2
+                              p.mb-0 Cancelado
+                          h6.mb-0
+                            | $23,876
+                            small.text-muted
+                              i.ti.ti-chevrons-up
+                              |  +$763,43
+            // [ Main Content ] end
 
     // FOOTER
     include _footer
 
-    //- script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
-    //- script(src='/js/mapbox.js')
-    //- script(src='/js/login.js')
-    script(src='https://js.stripe.com/v3/')
-    script(src='/js/bundle.js')
+    // MENU
+    include _menu
+
+  script(src='/js/bundle.js')
+  script(src='https://js.stripe.com/v3/')
+  script(src='js/plugins/apexcharts.min.js')
+  script(src='js/pages/dashboard-default.js')
+  script(src='js/plugins/popper.min.js')
+  script(src='js/plugins/simplebar.min.js')
+  script(src='js/plugins/bootstrap.min.js')
+  script(src='js/plugins/feather.min.js')
+  script(src='js/fonts/custom-font.js')
+  script(src='js/pcoded.js')
+  script.
+
+    layout_change("light");
+
+  script.
+
+    change_box_container("false");
+
+  script.
+
+    layout_caption_change("true");
+
+  script.
+
+    layout_rtl_change("false");
+
+  script.
+
+    preset_change("preset-1");
+
+  script.
+
+    main_layout_change("vertical");
